@@ -11,7 +11,9 @@ import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.service.BaseService;
 import uz.uychiitschool.system.web.core.dto.StudentDto;
 import uz.uychiitschool.system.web.core.entity.Address;
+import uz.uychiitschool.system.web.core.entity.Passport;
 import uz.uychiitschool.system.web.core.entity.Student;
+import uz.uychiitschool.system.web.core.enums.Gender;
 import uz.uychiitschool.system.web.core.repository.AddressRepository;
 import uz.uychiitschool.system.web.core.repository.StudentRepository;
 
@@ -60,18 +62,23 @@ public class StudentService extends BaseService {
                     .streetName(studentDto.getStreetName())
                     .houseNumber(studentDto.getHouseNumber())
                     .build();
-            address = addressRepository.save(address);
+
+            Passport passport = Passport.builder()
+                    .serial(studentDto.getPassportSerial())
+                    .number(studentDto.getPassportNumber())
+                    .build();
 
             Student student =  Student.builder()
                     .firstName(studentDto.getFirstName())
                     .lastName(studentDto.getLastName())
+                    .birthday(studentDto.getBirthDate())
+                    .gender(Gender.valueOf(studentDto.getGender()))
+                    .passport(passport)
                     .fatherName(studentDto.getFatherName())
                     .phoneNumber(studentDto.getPhoneNumber())
                     .fatherPhoneNumber(studentDto.getFatherPhoneNumber())
                     .address(address)
                     .build();
-
-            student = repository.save(student);
 
             student = repository.save(student);
             return ResponseApi.<Student>builder()
@@ -95,8 +102,14 @@ public class StudentService extends BaseService {
             address.setStreetName(studentDto.getStreetName());
             address.setHouseNumber(studentDto.getHouseNumber());
 
+            Passport passport = student.getPassport();
+            passport.setSerial(studentDto.getPassportSerial());
+            passport.setNumber(studentDto.getPassportNumber());
+
             student.setFirstName(studentDto.getFirstName());
             student.setLastName(studentDto.getLastName());
+            student.setBirthday(student.getBirthday());
+            student.setGender(Gender.valueOf(studentDto.getGender()));
             student.setFatherName(studentDto.getFatherName());
             student.setPhoneNumber(studentDto.getPhoneNumber());
             student.setFatherPhoneNumber(studentDto.getFatherPhoneNumber());

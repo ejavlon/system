@@ -36,13 +36,14 @@ public class Group {
     @Enumerated(EnumType.STRING)
     GroupStatus status;
 
-    @Enumerated(EnumType.STRING)
-    CourseType courseType;
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    Course course;
 
     @OneToOne
     User teacher;
 
-    @ManyToMany(mappedBy = "groups")
+    @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
     private List<Student> students;
 
 }

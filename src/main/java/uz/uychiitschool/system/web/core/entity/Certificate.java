@@ -29,6 +29,9 @@ public class Certificate {
     LocalDateTime date;
 
     @OneToOne
+    Course course;
+
+    @OneToOne
     Student student;
 
     @OneToOne

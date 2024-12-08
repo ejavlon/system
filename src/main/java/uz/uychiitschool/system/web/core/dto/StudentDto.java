@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -23,6 +25,14 @@ public class StudentDto {
     String firstName;
 
     String lastName;
+
+    LocalDate birthDate;
+
+    String gender;
+
+    String passportSerial;
+
+    String passportNumber;
 
     String fatherName;
 
