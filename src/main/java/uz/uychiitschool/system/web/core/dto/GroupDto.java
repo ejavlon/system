@@ -16,8 +16,10 @@ import java.time.LocalDateTime;
 public class GroupDto {
     Integer id;
 
+    @NotNull(message = "name is null")
     String name;
 
+    @NotNull(message = "group size is null")
     Integer size;
 
     Integer currentSize;
@@ -26,8 +28,10 @@ public class GroupDto {
 
     LocalDateTime endDate;
 
+    @NotNull(message = "Group status is null")
     String status;
 
+    @NotNull(message = "course id is null")
     Integer courseId;
 
     Integer teacherId;

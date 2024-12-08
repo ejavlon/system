@@ -16,7 +16,7 @@ import uz.uychiitschool.system.web.core.repository.PassportRepository;
 public class PassportService extends BaseService {
     private final PassportRepository repository;
 
-    public ResponseApi<Page<Passport>> findAll(int page, int size) {
+    public ResponseApi<Page<Passport>> getAllPassports(int page, int size) {
         try {
             Pageable pageable = PageRequest.of(page, size, Sort.sort(Passport.class).by(Passport::getSerial).ascending()
                     .and(Sort.sort(Passport.class).by(Passport::getNumber)).ascending());
@@ -33,7 +33,7 @@ public class PassportService extends BaseService {
     }
 
 
-    public ResponseApi<Passport> findById(Integer id) {
+    public ResponseApi<Passport> getPassportById(Integer id) {
         try {
             Passport passport = repository.findById(id).orElseThrow(() -> new RuntimeException("Passport not found"));
             return ResponseApi.<Passport>builder()

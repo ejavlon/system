@@ -19,8 +19,10 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(length = 50, unique = true, nullable = false)
     String name;
 
+    @Column(columnDefinition = "DOUBLE DEFAULT 0.0")
     Double price;
 
     Integer duration;

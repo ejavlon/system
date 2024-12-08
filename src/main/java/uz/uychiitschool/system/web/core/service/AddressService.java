@@ -54,6 +54,18 @@ public class AddressService extends BaseService {
 
     public ResponseApi<Address> create(Address address){
         try {
+            if (repository.existsByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
+                    address.getRegionName(),
+                    address.getDistrictName(),
+                    address.getStreetName(),
+                    address.getHouseNumber())){
+
+                return ResponseApi.<Address>builder()
+                        .message("Address exists")
+                        .success(false)
+                        .build();
+            }
+
             return ResponseApi.<Address>builder()
                     .message("Address successfully saved")
                     .data(repository.save(address))

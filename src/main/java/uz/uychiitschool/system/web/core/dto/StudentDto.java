@@ -1,5 +1,6 @@
 package uz.uychiitschool.system.web.core.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +23,15 @@ public class StudentDto {
 
     Integer houseNumber;
 
+    @NotNull(message = "first name is null")
     String firstName;
 
+    @NotNull(message = "last name is null")
     String lastName;
 
     LocalDate birthDate;
 
+    @NotNull(message = "gender is null")
     String gender;
 
     String passportSerial;

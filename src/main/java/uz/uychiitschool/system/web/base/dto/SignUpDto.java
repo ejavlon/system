@@ -11,15 +11,15 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SignUpDto {
 
-    @NotNull(message = "firstName null")
+    @NotNull(message = "firstName is null")
     String firstName;
 
-    @NotNull(message = "lastName null")
+    @NotNull(message = "lastName is null")
     String lastName;
 
-    @NotNull(message = "username null")
+    @NotNull(message = "username is null")
     String username;
 
-    @NotNull(message = "password null")
+    @NotNull(message = "password is null")
     String password;
 }

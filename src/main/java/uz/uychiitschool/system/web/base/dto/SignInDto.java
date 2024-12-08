@@ -10,9 +10,9 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SignInDto {
-    @NotNull(message = "username null")
+    @NotNull(message = "username is null")
     String username;
 
-    @NotNull(message = "password null")
+    @NotNull(message = "password is null")
     String password;
 }

@@ -9,14 +9,21 @@ import lombok.experimental.FieldDefaults;
 @Data
 @Builder
 @Entity
-@Table(name = "_passport")
+@Table(
+        name = "_passport",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"serial", "number"})
+        }
+)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Passport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
+    @Column(length = 5)
     String serial;
 
+    @Column(length = 20)
     String number;
 }

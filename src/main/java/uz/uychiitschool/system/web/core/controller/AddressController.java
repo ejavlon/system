@@ -19,7 +19,7 @@ public class AddressController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getAddressById(@PathVariable Integer id){
         ResponseApi<Address> responseApi = service.getAddressById(id);
-        return ResponseEntity.status(responseApi.isSuccess() ? 200 : 404).body(responseApi);
+        return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
     @GetMapping
@@ -28,16 +28,22 @@ public class AddressController {
 
         ResponseApi<Page<Address>> responseApi =
                 service.getAllAddresses(page != null ? page : 0, size != null ? size : 10);
-        return ResponseEntity.status(responseApi.isSuccess() ? 200 : 409).body(responseApi);
+        return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
-    @PutMapping("/update/{id}")
+    @PostMapping
+    public ResponseEntity<?> createAddress(@RequestBody Address address){
+        ResponseApi<Address> responseApi = service.create(address);
+        return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<?> updateAddress(@PathVariable int id, @RequestBody Address address){
         ResponseApi<Address> responseApi = service.update(address, id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
-    @PutMapping("/delete/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<?> deleteAddress(@PathVariable int id){
         ResponseApi<Address> responseApi = service.delete(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(responseApi);

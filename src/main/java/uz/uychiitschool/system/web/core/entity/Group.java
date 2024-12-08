@@ -7,6 +7,7 @@ import uz.uychiitschool.system.web.base.entity.User;
 import uz.uychiitschool.system.web.core.enums.GroupStatus;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -21,7 +22,7 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 50, unique = true)
     String name;
 
     Integer size;
@@ -43,6 +44,6 @@ public class Group {
     User teacher;
 
     @ManyToMany(mappedBy = "groups", fetch = FetchType.EAGER)
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();
 
 }

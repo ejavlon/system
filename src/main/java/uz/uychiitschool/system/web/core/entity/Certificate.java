@@ -20,18 +20,18 @@ public class Certificate {
     @GeneratedValue(strategy = GenerationType.UUID)
     UUID id;
 
-    String seria;
+    @Column(length = 10)
+    String serial;
 
+    @Column(length = 20)
     String number;
-
-    String direction;
 
     LocalDateTime date;
 
     @OneToOne
     Course course;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     Student student;
 
     @OneToOne

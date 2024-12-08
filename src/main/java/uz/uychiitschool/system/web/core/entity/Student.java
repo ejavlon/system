@@ -27,25 +27,27 @@ public class Student {
     @OneToOne(cascade = {CascadeType.ALL})
     Passport passport;
 
-    @Column(name = "first_name",length = 50)
+    @Column(name = "first_name",length = 20,nullable = false)
     String firstName;
 
-    @Column(name = "last_name",length = 50)
+    @Column(name = "last_name",length = 20,nullable = false)
     String lastName;
 
     LocalDate birthday;
 
-    @Column(name = "father_name",length = 50)
+    @Column(name = "father_name",length = 30)
     String fatherName;
 
     @Enumerated(EnumType.STRING)
     Gender gender;
 
+    @Column(length = 20, unique = true)
     String phoneNumber;
 
+    @Column(length = 20, unique = true)
     String fatherPhoneNumber;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(
             name = "student_group",
             joinColumns = @JoinColumn(name = "student_id"),
