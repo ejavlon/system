@@ -13,10 +13,11 @@ import uz.uychiitschool.system.web.base.entity.User;
 import uz.uychiitschool.system.web.base.repository.UserRepository;
 import uz.uychiitschool.system.web.base.service.BaseService;
 import uz.uychiitschool.system.web.core.dto.GroupDto;
+import uz.uychiitschool.system.web.core.entity.Course;
 import uz.uychiitschool.system.web.core.entity.Group;
-import uz.uychiitschool.system.web.core.enums.CourseType;
 import uz.uychiitschool.system.web.core.enums.GroupStatus;
 import uz.uychiitschool.system.web.core.mapper.GroupMapper;
+import uz.uychiitschool.system.web.core.repository.CourseRepository;
 import uz.uychiitschool.system.web.core.repository.GroupRepository;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class GroupService extends BaseService {
 
     private final GroupRepository repository;
     private final UserRepository userRepository;
+    private final CourseRepository courseRepository;
     private final GroupMapper mapper;
 
     public ResponseApi<Page<Group>> getAllGroups(int page, int size){
@@ -40,7 +42,7 @@ public class GroupService extends BaseService {
             return ResponseApi.<Page<Group>>builder()
                     .data(groups)
                     .success(true)
-                    .message("All groups")
+                    .message(String.format("Groups from %s to %s", page*size, page*size + size))
                     .build();
         }catch (RuntimeException e){
             return errorMessage(e.getMessage());
@@ -60,12 +62,13 @@ public class GroupService extends BaseService {
         }
     }
 
+    @Transactional
     public ResponseApi<Group> createGroup(GroupDto groupDto){
         try {
-            CourseType courseType = CourseType.valueOf(groupDto.getCourseType());
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
             LocalDateTime startDate = LocalDateTime.now();
             LocalDateTime endDate = LocalDateTime.now();
-            endDate = endDate.plusMonths(courseType.getMonth());
+            endDate = endDate.plusMonths(course.getDuration());
 
             User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             Group group =  Group.builder()
@@ -74,7 +77,7 @@ public class GroupService extends BaseService {
                     .size(groupDto.getSize())
                     .currentSize(groupDto.getCurrentSize())
                     .status(GroupStatus.valueOf(groupDto.getStatus()))
-                    .courseType(courseType)
+                    .course(course)
                     .startDate(startDate)
                     .endDate(endDate)
                     .build();
@@ -94,6 +97,8 @@ public class GroupService extends BaseService {
     public ResponseApi<Group> createGroupSuperAdmin(GroupDto groupDto) {
         try {
             User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new RuntimeException("Teacher not found"));
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
+
             Group group =  Group.builder()
                     .name(groupDto.getName())
                     .teacher(teacher)
@@ -102,7 +107,7 @@ public class GroupService extends BaseService {
                     .status(GroupStatus.valueOf(groupDto.getStatus()))
                     .startDate(groupDto.getStartDate())
                     .endDate(groupDto.getEndDate())
-                    .courseType(CourseType.valueOf(groupDto.getCourseType()))
+                    .course(course)
                     .build();
 
             group = repository.save(group);
@@ -121,9 +126,17 @@ public class GroupService extends BaseService {
         try {
             Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
             User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
+
+            LocalDateTime startDate = LocalDateTime.now();
+            LocalDateTime endDate = LocalDateTime.now();
+            endDate = endDate.plusMonths(course.getDuration());
 
             mapper.updateGroupFromDto(groupDto, group);
             group.setTeacher(teacher);
+            group.setCourse(course);
+            group.setStartDate(startDate);
+            group.setEndDate(endDate);
             group = repository.save(group);
 
             return ResponseApi.<Group>builder()
@@ -141,9 +154,11 @@ public class GroupService extends BaseService {
         try {
             Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
             User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new RuntimeException("Teacher not found"));
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
 
             mapper.updateGroupFromDto(groupDto, group);
             group.setTeacher(teacher);
+            group.setCourse(course);
             group = repository.save(group);
 
             return ResponseApi.<Group>builder()

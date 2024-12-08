@@ -28,7 +28,7 @@ public class GroupDto {
 
     String status;
 
-    String courseType;
+    Integer courseId;
 
     Integer teacherId;
 }

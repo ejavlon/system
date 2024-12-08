@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import uz.uychiitschool.system.web.base.entity.User;
-import uz.uychiitschool.system.web.core.enums.CourseType;
 import uz.uychiitschool.system.web.core.enums.GroupStatus;
 
 import java.time.LocalDateTime;

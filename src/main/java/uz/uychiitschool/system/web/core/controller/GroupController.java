@@ -48,6 +48,14 @@ public class GroupController {
         return ResponseEntity.status(responseApi.isSuccess() ? 200 : 404).body(responseApi);
     }
 
+
+    @PutMapping("/admin/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> updateGroupByIdWithSuperAdmin(@PathVariable int id, @RequestBody GroupDto groupDto){
+        ResponseApi<Group> responseApi = service.updateGroupByIdWithSuperAdmin(id,groupDto);
+        return ResponseEntity.status(responseApi.isSuccess() ? 200 : 404).body(responseApi);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteGroupById(@PathVariable int id){
         ResponseApi<Group> responseApi = service.deleteGroupById(id);

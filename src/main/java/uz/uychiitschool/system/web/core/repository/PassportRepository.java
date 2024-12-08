@@ -6,4 +6,6 @@ import uz.uychiitschool.system.web.core.entity.Passport;
 
 @Repository
 public interface PassportRepository extends JpaRepository<Passport, Integer> {
+
+    boolean existsBySerialAndNumber(String serial, String number);
 }

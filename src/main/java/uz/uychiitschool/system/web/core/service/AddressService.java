@@ -31,7 +31,7 @@ public class AddressService extends BaseService {
             return ResponseApi.<Page<Address>>builder()
                     .data(addresses)
                     .success(true)
-                    .message("All addresses")
+                    .message(String.format("Address from %s to %s", page*size, page*size + size))
                     .build();
         }catch (RuntimeException e){
             return errorMessage(e.getMessage());
