@@ -53,7 +53,6 @@ public class JwtService {
     }
 
     public String generateToken(Map<String,Object> extractClaims, UserDetails userDetails){
-
         return Jwts
                 .builder()
                 .setClaims(extractClaims)

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
 import uz.uychiitschool.system.web.base.exception.DuplicateEntityException;
+import uz.uychiitschool.system.web.core.dto.StudentDto;
 import uz.uychiitschool.system.web.core.entity.Passport;
 import uz.uychiitschool.system.web.core.repository.PassportRepository;
 
@@ -18,6 +19,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class PassportService {
     private final PassportRepository repository;
+    private final PassportRepository passportRepository;
 
     public ResponseApi<Page<Passport>> getAllPassports(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.sort(Passport.class).by(Passport::getSerial).ascending()
@@ -41,6 +43,7 @@ public class PassportService {
                 .build();
     }
 
+
     public ResponseApi<Passport> create(Passport passport) {
         if (repository.existsBySerialAndNumber(passport.getSerial(), passport.getNumber()))
             throw new DuplicateEntityException("Passport already exists");
@@ -52,6 +55,7 @@ public class PassportService {
                 .data(passport)
                 .build();
     }
+
 
     public ResponseApi<Passport> update(int id, Passport newPassport) {
         Passport passport = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Passport not found"));
@@ -95,5 +99,46 @@ public class PassportService {
                 .success(true)
                 .message("Passport successfully deleted")
                 .build();
+    }
+
+    public Passport createPassport(String serial, String number) {
+        return Passport.builder()
+                .serial(serial)
+                .number(number)
+                .build();
+    }
+
+    public Passport updateOrCreatePassport(StudentDto studentDto, Passport existingPassport) {
+        if (existingPassport == null) {
+            return createPassport(studentDto.getPassportSerial(), studentDto.getPassportNumber());
+        }
+
+        if ((studentDto.getPassportSerial() == null && studentDto.getPassportNumber() == null)
+                || (Objects.equals(studentDto.getPassportSerial(), existingPassport.getSerial())
+                && Objects.equals(studentDto.getPassportNumber(), existingPassport.getNumber()))) {
+            return existingPassport;
+        }
+
+        Passport newPassword = createPassport(studentDto.getPassportSerial(), studentDto.getPassportNumber());
+        if (newPassword.getSerial() == null)
+            newPassword.setSerial(studentDto.getPassportSerial());
+
+        if (newPassword.getNumber() == null)
+            newPassword.setNumber(studentDto.getPassportNumber());
+
+        if (isDuplicatePassport(existingPassport, newPassword)) {
+            throw new DuplicateEntityException("Passport already exists");
+        }
+        newPassword.setId(existingPassport.getId());
+
+        return newPassword;
+    }
+
+    public boolean isDuplicatePassport(Passport newPassport, Passport oldPassport) {
+        if (!Objects.equals(newPassport.getSerial(), oldPassport.getSerial())
+                || !Objects.equals(newPassport.getNumber(), oldPassport.getNumber()))
+            return passportRepository.existsBySerialAndNumber(oldPassport.getSerial(), oldPassport.getNumber());
+
+        return false;
     }
 }

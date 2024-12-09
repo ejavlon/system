@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
 import uz.uychiitschool.system.web.base.exception.DuplicateEntityException;
+import uz.uychiitschool.system.web.core.dto.StudentDto;
 import uz.uychiitschool.system.web.core.entity.Address;
 import uz.uychiitschool.system.web.core.mapper.AddressMapper;
 import uz.uychiitschool.system.web.core.repository.AddressRepository;
@@ -63,7 +64,7 @@ public class AddressService {
 
     public ResponseApi<Address> update(Address newAddress, int id) {
         Address oldAddress = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
-        oldAddress = updateAddressNotNullField(newAddress, oldAddress);
+        addressMapper.updateAddressFromDto(newAddress, oldAddress);
         oldAddress = repository.save(oldAddress);
 
         return ResponseApi.<Address>builder()
@@ -71,11 +72,6 @@ public class AddressService {
                 .message("Address successfully updated")
                 .data(oldAddress)
                 .build();
-    }
-
-    public Address updateAddressNotNullField(Address newAddress, Address oldAddress) {
-        addressMapper.updateAddressFromDto(newAddress, oldAddress);
-        return oldAddress;
     }
 
     public ResponseApi<Address> delete(int id) {
@@ -86,6 +82,32 @@ public class AddressService {
                 .message("Address successfully deleted")
                 .data(address)
                 .build();
+    }
+
+    public Address createAddress(StudentDto studentDto) {
+        return Address.builder()
+                .regionName(studentDto.getRegionName())
+                .districtName(studentDto.getDistrictName())
+                .streetName(studentDto.getStreetName())
+                .houseNumber(studentDto.getHouseNumber())
+                .build();
+    }
+
+    public Address updateOrCreateAddress(StudentDto studentDto, Address existingAddress) {
+        if (existingAddress == null) {
+            return createAddress(studentDto);
+        }
+        addressMapper.updateAddressFromDto(createAddress(studentDto), existingAddress);
+        return existingAddress;
+    }
+
+    public Address findByFullField(Address address){
+        return repository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
+                address.getRegionName(),
+                address.getDistrictName(),
+                address.getStreetName(),
+                address.getHouseNumber()
+        ).orElse(null);
     }
 
 }

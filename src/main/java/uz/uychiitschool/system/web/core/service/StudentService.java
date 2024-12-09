@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
-import uz.uychiitschool.system.web.base.exception.DuplicateEntityException;
 import uz.uychiitschool.system.web.core.dto.StudentDto;
 import uz.uychiitschool.system.web.core.entity.Address;
 import uz.uychiitschool.system.web.core.entity.Passport;
@@ -18,8 +17,6 @@ import uz.uychiitschool.system.web.core.enums.Gender;
 import uz.uychiitschool.system.web.core.mapper.StudentMapper;
 import uz.uychiitschool.system.web.core.repository.AddressRepository;
 import uz.uychiitschool.system.web.core.repository.StudentRepository;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -54,39 +51,17 @@ public class StudentService {
 
     @Transactional
     public ResponseApi<Student> createStudent(StudentDto studentDto) {
-        Optional<Address> optionalAddress = addressRepository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
-                studentDto.getRegionName(),
-                studentDto.getDistrictName(),
-                studentDto.getStreetName(),
-                studentDto.getHouseNumber()
-        );
-        Address address = optionalAddress.orElse(null);
+        Address newAddress = addressService.updateOrCreateAddress(studentDto, null);
+        Address findFullFieldAddress = addressService.findByFullField(newAddress);
 
-        if (address == null) {
-            address = Address.builder()
-                    .regionName(studentDto.getRegionName())
-                    .districtName(studentDto.getDistrictName())
-                    .streetName(studentDto.getStreetName())
-                    .houseNumber(studentDto.getHouseNumber())
-                    .build();
-        }
+        if (findFullFieldAddress != null)
+            newAddress.setId(findFullFieldAddress.getId());
 
-        Passport passport = Passport.builder()
-                .serial(studentDto.getPassportSerial())
-                .number(studentDto.getPassportNumber())
-                .build();
+        Passport passport = passportService.updateOrCreatePassport(studentDto,null);
 
-        Student student = Student.builder()
-                .firstName(studentDto.getFirstName())
-                .lastName(studentDto.getLastName())
-                .birthday(studentDto.getBirthDate())
-                .gender(Gender.valueOf(studentDto.getGender()))
-                .passport(passport)
-                .fatherName(studentDto.getFatherName())
-                .phoneNumber(studentDto.getPhoneNumber())
-                .fatherPhoneNumber(studentDto.getFatherPhoneNumber())
-                .address(address)
-                .build();
+        Student student = createStudentFromStudentDto(studentDto);
+        student.setAddress(newAddress);
+        student.setPassport(passport);
 
         student = repository.save(student);
         return ResponseApi.<Student>builder()
@@ -101,37 +76,16 @@ public class StudentService {
         Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
 
         Address oldAddress = student.getAddress();
-        Address newAddress = Address.builder()
-                .regionName(studentDto.getRegionName())
-                .districtName(studentDto.getDistrictName())
-                .streetName(studentDto.getStreetName())
-                .houseNumber(studentDto.getHouseNumber())
-                .build();
+        Address newAddress = addressService.updateOrCreateAddress(studentDto, oldAddress);
 
-        newAddress = addressService.updateAddressNotNullField(newAddress, oldAddress);
-
-        Optional<Address> optionalAddress = addressRepository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
-                newAddress.getRegionName(),
-                newAddress.getDistrictName(),
-                newAddress.getStreetName(),
-                newAddress.getHouseNumber()
-        );
-
-        if (optionalAddress.isPresent()) {
-            newAddress = optionalAddress.get();
-        }
+        Address findByFullFieldAddress = addressService.findByFullField(newAddress);
+        if (findByFullFieldAddress != null)
+            newAddress.setId(findByFullFieldAddress.getId());
 
         Passport oldPassport = student.getPassport();
-        Passport newPassport = Passport.builder()
-                .serial(studentDto.getPassportSerial())
-                .number(studentDto.getPassportNumber())
-                .build();
+        Passport newPassport = passportService.updateOrCreatePassport(studentDto,oldPassport);
 
-        newPassport = passportService.updatePassportNotNullField(newPassport, oldPassport);
-        if (passportService.existNewPassport(newPassport, oldPassport))
-            throw new DuplicateEntityException(String.format("%s %s passport already  exist", newPassport.getSerial(), newPassport.getNumber()));
-
-        studentMapper.updateStudentFromDto(studentDto, student);
+        student = updateOrCreateStudent(studentDto, student);
         student.setAddress(newAddress);
         student.setPassport(newPassport);
         student = repository.save(student);
@@ -151,5 +105,25 @@ public class StudentService {
                 .success(true)
                 .message("Student deleted successfully")
                 .build();
+    }
+
+    public Student createStudentFromStudentDto(StudentDto studentDto) {
+        return Student.builder()
+                .firstName(studentDto.getFirstName())
+                .lastName(studentDto.getLastName())
+                .birthday(studentDto.getBirthDate())
+                .gender(Gender.valueOf(studentDto.getGender()))
+                .fatherName(studentDto.getFatherName())
+                .phoneNumber(studentDto.getPhoneNumber())
+                .fatherPhoneNumber(studentDto.getFatherPhoneNumber())
+                .build();
+    }
+
+    public Student updateOrCreateStudent(StudentDto studentDto, Student existingStudent) {
+        if (existingStudent == null) {
+            return createStudentFromStudentDto(studentDto);
+        }
+        studentMapper.updateStudentFromDto(studentDto, existingStudent);
+        return existingStudent;
     }
 }
