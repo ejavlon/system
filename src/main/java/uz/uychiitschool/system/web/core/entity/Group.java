@@ -22,7 +22,7 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(nullable = false,length = 50, unique = true)
+    @Column(nullable = false, length = 50, unique = true)
     String name;
 
     Integer size;

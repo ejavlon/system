@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @Builder
 @Entity
-@Table(name = "_passport")
+@Table(name = "_course")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Course {
     @Id
@@ -27,6 +27,6 @@ public class Course {
 
     Integer duration;
 
-    @OneToMany(mappedBy = "course",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     List<Group> groups = new ArrayList<>();
 }

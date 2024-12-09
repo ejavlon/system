@@ -23,7 +23,7 @@ public class StudentService extends BaseService {
     private final StudentRepository repository;
     private final AddressRepository addressRepository;
 
-    public ResponseApi<Page<Student>> getAllStudents(int page, int size){
+    public ResponseApi<Page<Student>> getAllStudents(int page, int size) {
         try {
             Pageable pageable = PageRequest.of(page, size, Sort.sort(Student.class)
                     .by(Student::getFirstName).ascending()
@@ -33,14 +33,14 @@ public class StudentService extends BaseService {
             return ResponseApi.<Page<Student>>builder()
                     .data(students)
                     .success(true)
-                    .message(String.format("Students from %s to %s", page*size, page*size + size))
+                    .message(String.format("Students from %s to %s", page * size, page * size + size))
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Student> getStudentById(int id){
+    public ResponseApi<Student> getStudentById(int id) {
         try {
             Student student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
             return ResponseApi.<Student>builder()
@@ -48,13 +48,13 @@ public class StudentService extends BaseService {
                     .success(true)
                     .message("Student found")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     @Transactional
-    public ResponseApi<Student> createStudent(StudentDto studentDto){
+    public ResponseApi<Student> createStudent(StudentDto studentDto) {
         try {
             Address address = Address.builder()
                     .regionName(studentDto.getRegionName())
@@ -68,7 +68,7 @@ public class StudentService extends BaseService {
                     .number(studentDto.getPassportNumber())
                     .build();
 
-            Student student =  Student.builder()
+            Student student = Student.builder()
                     .firstName(studentDto.getFirstName())
                     .lastName(studentDto.getLastName())
                     .birthday(studentDto.getBirthDate())
@@ -86,15 +86,15 @@ public class StudentService extends BaseService {
                     .success(true)
                     .message("Student successfully created")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     @Transactional
-    public ResponseApi<Student> updateStudentById(int id, StudentDto studentDto){
+    public ResponseApi<Student> updateStudentById(int id, StudentDto studentDto) {
         try {
-            Student  student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+            Student student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
 
             Address address = student.getAddress();
             address.setRegionName(studentDto.getRegionName());
@@ -122,12 +122,12 @@ public class StudentService extends BaseService {
                     .success(true)
                     .message("Student successfully updated")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Student> deleteStudentById(int id){
+    public ResponseApi<Student> deleteStudentById(int id) {
         try {
             Student student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
             repository.deleteById(id);
@@ -136,7 +136,7 @@ public class StudentService extends BaseService {
                     .success(true)
                     .message("Student deleted successfully")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }

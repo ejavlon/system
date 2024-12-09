@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.service.BaseService;
+import uz.uychiitschool.system.web.core.dto.CourseDto;
 import uz.uychiitschool.system.web.core.entity.Course;
 import uz.uychiitschool.system.web.core.repository.CourseRepository;
 
@@ -23,11 +24,11 @@ public class CourseService extends BaseService {
 
             Page<Course> courses = repository.findAll(pageable);
             return ResponseApi.<Page<Course>>builder()
-                    .message(String.format("Courses from %s to %s", page*size, page*size + size))
+                    .message(String.format("Courses from %s to %s", page * size, page * size + size))
                     .data(courses)
                     .success(true)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -40,18 +41,24 @@ public class CourseService extends BaseService {
                     .data(course)
                     .success(true)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Course> createCourse(Course course) {
+    public ResponseApi<Course> createCourse(CourseDto courseDto) {
         try {
-            if (repository.existsByName(course.getName()))
+            if (repository.existsByName(courseDto.getName()))
                 return ResponseApi.<Course>builder()
                         .success(false)
                         .message("Course exists")
                         .build();
+
+            Course course = Course.builder()
+                    .name(courseDto.getName())
+                    .duration(courseDto.getDuration())
+                    .price(courseDto.getPrice())
+                    .build();
 
             course = repository.save(course);
             repository.flush();
@@ -61,12 +68,12 @@ public class CourseService extends BaseService {
                     .data(course)
                     .message("Course successfully created")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Course> updateCourse(Integer id, Course newCourse) {
+    public ResponseApi<Course> updateCourse(Integer id, CourseDto newCourse) {
         try {
             Course course = repository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
             course.setName(newCourse.getName());
@@ -81,7 +88,7 @@ public class CourseService extends BaseService {
                     .message("Course successfully updated")
                     .build();
 
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }

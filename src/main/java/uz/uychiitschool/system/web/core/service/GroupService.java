@@ -32,7 +32,7 @@ public class GroupService extends BaseService {
     private final CourseRepository courseRepository;
     private final GroupMapper mapper;
 
-    public ResponseApi<Page<Group>> getAllGroups(int page, int size){
+    public ResponseApi<Page<Group>> getAllGroups(int page, int size) {
         try {
             Pageable pageable = PageRequest.of(page, size, Sort.sort(Group.class)
                     .by(Group::getStartDate).ascending()
@@ -42,14 +42,14 @@ public class GroupService extends BaseService {
             return ResponseApi.<Page<Group>>builder()
                     .data(groups)
                     .success(true)
-                    .message(String.format("Groups from %s to %s", page*size, page*size + size))
+                    .message(String.format("Groups from %s to %s", page * size, page * size + size))
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Group> getGroupById(int id){
+    public ResponseApi<Group> getGroupById(int id) {
         try {
             Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
             return ResponseApi.<Group>builder()
@@ -57,13 +57,13 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group found")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     @Transactional
-    public ResponseApi<Group> createGroup(GroupDto groupDto){
+    public ResponseApi<Group> createGroup(GroupDto groupDto) {
         try {
             Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
             LocalDateTime startDate = LocalDateTime.now();
@@ -71,7 +71,7 @@ public class GroupService extends BaseService {
             endDate = endDate.plusMonths(course.getDuration());
 
             User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            Group group =  Group.builder()
+            Group group = Group.builder()
                     .name(groupDto.getName())
                     .teacher(teacher)
                     .size(groupDto.getSize())
@@ -88,7 +88,7 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully created")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -99,7 +99,7 @@ public class GroupService extends BaseService {
             User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new RuntimeException("Teacher not found"));
             Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
 
-            Group group =  Group.builder()
+            Group group = Group.builder()
                     .name(groupDto.getName())
                     .teacher(teacher)
                     .size(groupDto.getSize())
@@ -116,13 +116,13 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully created")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     @Transactional
-    public ResponseApi<Group> updateGroupById(int id, GroupDto groupDto){
+    public ResponseApi<Group> updateGroupById(int id, GroupDto groupDto) {
         try {
             Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
             User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -144,13 +144,13 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully updated")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     @Transactional
-    public ResponseApi<Group> updateGroupByIdWithSuperAdmin(int id, GroupDto groupDto){
+    public ResponseApi<Group> updateGroupByIdWithSuperAdmin(int id, GroupDto groupDto) {
         try {
             Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
             User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new RuntimeException("Teacher not found"));
@@ -166,12 +166,12 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully updated")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Group> deleteGroupById(int id){
+    public ResponseApi<Group> deleteGroupById(int id) {
         try {
             Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
             repository.delete(group);
@@ -180,7 +180,7 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully deleted")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }

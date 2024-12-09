@@ -11,7 +11,7 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Table(
         name = "_address",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"regionName","districtName","streetName","houseNumber"})
+        uniqueConstraints = @UniqueConstraint(columnNames = {"regionName", "districtName", "streetName", "houseNumber"})
 )
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Address {

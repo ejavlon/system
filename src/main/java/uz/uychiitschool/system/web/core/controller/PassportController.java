@@ -16,8 +16,8 @@ public class PassportController {
     private final PassportService service;
 
     @GetMapping
-    public ResponseEntity<?> getAllPassports(@RequestParam(required = false)Integer page,
-                                             @RequestParam(required = false)Integer size) {
+    public ResponseEntity<?> getAllPassports(@RequestParam(required = false) Integer page,
+                                             @RequestParam(required = false) Integer size) {
         ResponseApi<Page<Passport>> responseApi = service.getAllPassports(page != null ? (page - 1) : 0, size != null ? size : 10);
         return ResponseEntity.ok(responseApi);
     }

@@ -27,15 +27,15 @@ public class Student {
     @OneToOne(cascade = {CascadeType.ALL})
     Passport passport;
 
-    @Column(name = "first_name",length = 20,nullable = false)
+    @Column(name = "first_name", length = 20, nullable = false)
     String firstName;
 
-    @Column(name = "last_name",length = 20,nullable = false)
+    @Column(name = "last_name", length = 20, nullable = false)
     String lastName;
 
     LocalDate birthday;
 
-    @Column(name = "father_name",length = 30)
+    @Column(name = "father_name", length = 30)
     String fatherName;
 
     @Enumerated(EnumType.STRING)

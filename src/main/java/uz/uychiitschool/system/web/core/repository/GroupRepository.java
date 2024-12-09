@@ -6,5 +6,5 @@ import uz.uychiitschool.system.web.core.entity.Address;
 import uz.uychiitschool.system.web.core.entity.Group;
 
 @Repository
-public interface GroupRepository extends JpaRepository<Group,Integer> {
+public interface GroupRepository extends JpaRepository<Group, Integer> {
 }

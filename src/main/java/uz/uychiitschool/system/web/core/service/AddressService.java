@@ -19,7 +19,7 @@ public class AddressService extends BaseService {
 
     private final AddressRepository repository;
 
-    public ResponseApi<Page<Address>> getAllAddresses(int page, int size){
+    public ResponseApi<Page<Address>> getAllAddresses(int page, int size) {
         try {
             Pageable pageable = PageRequest.of(page, size,
                     Sort.sort(Address.class).
@@ -31,34 +31,34 @@ public class AddressService extends BaseService {
             return ResponseApi.<Page<Address>>builder()
                     .data(addresses)
                     .success(true)
-                    .message(String.format("Address from %s to %s", page*size, page*size + size))
+                    .message(String.format("Address from %s to %s", page * size, page * size + size))
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
 
     }
 
-    public ResponseApi<Address> getAddressById(int id){
+    public ResponseApi<Address> getAddressById(int id) {
         try {
-            Address address =  repository.findById(id).orElseThrow(() -> new RuntimeException("Address not found"));
+            Address address = repository.findById(id).orElseThrow(() -> new RuntimeException("Address not found"));
             return ResponseApi.<Address>builder()
                     .data(address)
                     .success(true)
                     .message("Address found")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Address> create(Address address){
+    public ResponseApi<Address> create(Address address) {
         try {
             if (repository.existsByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
                     address.getRegionName(),
                     address.getDistrictName(),
                     address.getStreetName(),
-                    address.getHouseNumber())){
+                    address.getHouseNumber())) {
 
                 return ResponseApi.<Address>builder()
                         .message("Address exists")
@@ -71,12 +71,12 @@ public class AddressService extends BaseService {
                     .data(repository.save(address))
                     .success(true)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Address> update(Address address, int id){
+    public ResponseApi<Address> update(Address address, int id) {
         try {
             Optional<Address> optionalAddress = repository.findById(id);
             Address oldAddress = optionalAddress.orElseThrow(() -> new RuntimeException("Address not found"));
@@ -90,21 +90,21 @@ public class AddressService extends BaseService {
                     .message("Address successfully updated")
                     .data(oldAddress)
                     .build();
-        }catch (RuntimeException e){
-           return errorMessage(e.getMessage());
+        } catch (RuntimeException e) {
+            return errorMessage(e.getMessage());
         }
     }
 
-    public ResponseApi<Address> delete(int id){
+    public ResponseApi<Address> delete(int id) {
         try {
-            Address address =  repository.findById(id).orElseThrow(() -> new RuntimeException("Address not found"));
+            Address address = repository.findById(id).orElseThrow(() -> new RuntimeException("Address not found"));
             repository.delete(address);
             return ResponseApi.<Address>builder()
                     .success(true)
                     .message("Address successfully deleted")
                     .data(address)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }

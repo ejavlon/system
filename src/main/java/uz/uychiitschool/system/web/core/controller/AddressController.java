@@ -17,34 +17,34 @@ public class AddressController {
     private final AddressService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getAddressById(@PathVariable Integer id){
+    public ResponseEntity<?> getAddressById(@PathVariable Integer id) {
         ResponseApi<Address> responseApi = service.getAddressById(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
     @GetMapping
     public ResponseEntity<?> getAllAddresses(@RequestParam(required = false) Integer page,
-                                             @RequestParam(required = false) Integer size){
+                                             @RequestParam(required = false) Integer size) {
 
         ResponseApi<Page<Address>> responseApi =
-                service.getAllAddresses(page != null ? page : 0, size != null ? size : 10);
+                service.getAllAddresses(page != null ? (page - 1) : 0, size != null ? size : 10);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
     @PostMapping
-    public ResponseEntity<?> createAddress(@RequestBody Address address){
+    public ResponseEntity<?> createAddress(@RequestBody Address address) {
         ResponseApi<Address> responseApi = service.create(address);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateAddress(@PathVariable int id, @RequestBody Address address){
+    public ResponseEntity<?> updateAddress(@PathVariable int id, @RequestBody Address address) {
         ResponseApi<Address> responseApi = service.update(address, id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> deleteAddress(@PathVariable int id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteAddress(@PathVariable int id) {
         ResponseApi<Address> responseApi = service.delete(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(responseApi);
     }

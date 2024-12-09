@@ -23,11 +23,11 @@ public class PassportService extends BaseService {
 
             Page<Passport> passports = repository.findAll(pageable);
             return ResponseApi.<Page<Passport>>builder()
-                    .message(String.format("Passports from %s to %s", page*size, page*size + size))
+                    .message(String.format("Passports from %s to %s", page * size, page * size + size))
                     .success(true)
                     .data(passports)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -41,7 +41,7 @@ public class PassportService extends BaseService {
                     .message("Passport found")
                     .success(true)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -60,7 +60,7 @@ public class PassportService extends BaseService {
                     .success(true)
                     .data(passport)
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -77,7 +77,7 @@ public class PassportService extends BaseService {
                     .success(true)
                     .message("Passport successfully updated")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -92,7 +92,7 @@ public class PassportService extends BaseService {
                     .success(true)
                     .message("Passport successfully deleted")
                     .build();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             return errorMessage(e.getMessage());
         }
     }

@@ -6,5 +6,5 @@ import uz.uychiitschool.system.web.core.entity.Address;
 import uz.uychiitschool.system.web.core.entity.Student;
 
 @Repository
-public interface StudentRepository extends JpaRepository<Student,Integer> {
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 }

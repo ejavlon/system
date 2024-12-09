@@ -20,7 +20,7 @@ public class StudentController {
     @GetMapping
     public ResponseEntity<?> getAllStudents(@RequestParam(required = false) Integer page,
                                             @RequestParam(required = false) Integer size){
-        ResponseApi<Page<Student>> responseApi = service.getAllStudents(page != null ? page : 0, size != null ? size : 10);
+        ResponseApi<Page<Student>> responseApi = service.getAllStudents(page != null ? (page - 1) : 0, size != null ? size : 10);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 

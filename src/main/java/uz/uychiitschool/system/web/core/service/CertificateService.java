@@ -16,7 +16,7 @@ public class CertificateService {
     public Certificate createCertificate() {
         Certificate certificate = new Certificate();
         certificate.setId(UUID.randomUUID()); // Noyob UUID yaratish
-        certificate.setSeria("SER-" + UUID.randomUUID().toString().substring(0, 8)); // Seriya yaratish
+        certificate.setSerial("SER-" + UUID.randomUUID().toString().substring(0, 8)); // Seriya yaratish
         certificate.setNumber("NUM-" + UUID.randomUUID().toString().substring(0, 8)); // Raqam yaratish
 
         return repository.save(certificate);

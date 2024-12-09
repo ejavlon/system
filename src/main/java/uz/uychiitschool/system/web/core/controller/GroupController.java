@@ -20,46 +20,46 @@ public class GroupController {
 
     @GetMapping
     public ResponseEntity<?> getAllGroups(@RequestParam(required = false) Integer page,
-                                          @RequestParam(required = false) Integer size){
-        ResponseApi<Page<Group>> responseApi = service.getAllGroups(page != null ? page : 0, size != null ? size : 10);
+                                          @RequestParam(required = false) Integer size) {
+        ResponseApi<Page<Group>> responseApi = service.getAllGroups(page != null ? (page - 1) : 0, size != null ? size : 10);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getGroupById(@PathVariable int id){
+    public ResponseEntity<?> getGroupById(@PathVariable int id) {
         ResponseApi<Group> responseApi = service.getGroupById(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
     @PostMapping
-    public ResponseEntity<?> createGroup(@Valid @RequestBody GroupDto groupDto){
+    public ResponseEntity<?> createGroup(@Valid @RequestBody GroupDto groupDto) {
         ResponseApi<Group> responseApi = service.createGroup(groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
     @PostMapping("/admin")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> createGroupSuperAdmin(@Valid @RequestBody GroupDto groupDto){
+    public ResponseEntity<?> createGroupSuperAdmin(@Valid @RequestBody GroupDto groupDto) {
         ResponseApi<Group> responseApi = service.createGroupSuperAdmin(groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateGroupById(@PathVariable int id, @Valid @RequestBody GroupDto groupDto){
-        ResponseApi<Group> responseApi = service.updateGroupById(id,groupDto);
+    public ResponseEntity<?> updateGroupById(@PathVariable int id, @Valid @RequestBody GroupDto groupDto) {
+        ResponseApi<Group> responseApi = service.updateGroupById(id, groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
 
     @PutMapping("/admin/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> updateGroupByIdWithSuperAdmin(@PathVariable int id, @Valid @RequestBody GroupDto groupDto){
-        ResponseApi<Group> responseApi = service.updateGroupByIdWithSuperAdmin(id,groupDto);
+    public ResponseEntity<?> updateGroupByIdWithSuperAdmin(@PathVariable int id, @Valid @RequestBody GroupDto groupDto) {
+        ResponseApi<Group> responseApi = service.updateGroupByIdWithSuperAdmin(id, groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteGroupById(@PathVariable int id){
+    public ResponseEntity<?> deleteGroupById(@PathVariable int id) {
         ResponseApi<Group> responseApi = service.deleteGroupById(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.NO_CONTENT : HttpStatus.NOT_FOUND).body(responseApi);
     }
