@@ -14,14 +14,22 @@ import uz.uychiitschool.system.web.core.entity.Address;
 import uz.uychiitschool.system.web.core.entity.Passport;
 import uz.uychiitschool.system.web.core.entity.Student;
 import uz.uychiitschool.system.web.core.enums.Gender;
+import uz.uychiitschool.system.web.core.exception.DataNotFoundException;
+import uz.uychiitschool.system.web.core.mapper.StudentMapper;
 import uz.uychiitschool.system.web.core.repository.AddressRepository;
 import uz.uychiitschool.system.web.core.repository.StudentRepository;
+
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService extends BaseService {
     private final StudentRepository repository;
     private final AddressRepository addressRepository;
+    private final AddressService addressService;
+    private final PassportService passportService;
+    private final StudentMapper studentMapper;
 
     public ResponseApi<Page<Student>> getAllStudents(int page, int size) {
         try {
@@ -42,13 +50,13 @@ public class StudentService extends BaseService {
 
     public ResponseApi<Student> getStudentById(int id) {
         try {
-            Student student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+            Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
             return ResponseApi.<Student>builder()
                     .data(student)
                     .success(true)
                     .message("Student found")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -56,12 +64,22 @@ public class StudentService extends BaseService {
     @Transactional
     public ResponseApi<Student> createStudent(StudentDto studentDto) {
         try {
-            Address address = Address.builder()
-                    .regionName(studentDto.getRegionName())
-                    .districtName(studentDto.getDistrictName())
-                    .streetName(studentDto.getStreetName())
-                    .houseNumber(studentDto.getHouseNumber())
-                    .build();
+            Optional<Address> optionalAddress = addressRepository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
+                    studentDto.getRegionName(),
+                    studentDto.getDistrictName(),
+                    studentDto.getStreetName(),
+                    studentDto.getHouseNumber()
+            );
+            Address address = optionalAddress.orElse(null);
+
+            if (address == null) {
+                address = Address.builder()
+                        .regionName(studentDto.getRegionName())
+                        .districtName(studentDto.getDistrictName())
+                        .streetName(studentDto.getStreetName())
+                        .houseNumber(studentDto.getHouseNumber())
+                        .build();
+            }
 
             Passport passport = Passport.builder()
                     .serial(studentDto.getPassportSerial())
@@ -94,27 +112,45 @@ public class StudentService extends BaseService {
     @Transactional
     public ResponseApi<Student> updateStudentById(int id, StudentDto studentDto) {
         try {
-            Student student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+            Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
 
-            Address address = student.getAddress();
-            address.setRegionName(studentDto.getRegionName());
-            address.setDistrictName(studentDto.getDistrictName());
-            address.setStreetName(studentDto.getStreetName());
-            address.setHouseNumber(studentDto.getHouseNumber());
+            Address oldAddress = student.getAddress();
+            Address newAddress = Address.builder()
+                    .regionName(studentDto.getRegionName())
+                    .districtName(studentDto.getDistrictName())
+                    .streetName(studentDto.getStreetName())
+                    .houseNumber(studentDto.getHouseNumber())
+                    .build();
 
-            Passport passport = student.getPassport();
-            passport.setSerial(studentDto.getPassportSerial());
-            passport.setNumber(studentDto.getPassportNumber());
+            newAddress = addressService.updateAddressNotNullField(newAddress, oldAddress);
 
-            student.setFirstName(studentDto.getFirstName());
-            student.setLastName(studentDto.getLastName());
-            student.setBirthday(student.getBirthday());
-            student.setGender(Gender.valueOf(studentDto.getGender()));
-            student.setFatherName(studentDto.getFatherName());
-            student.setPhoneNumber(studentDto.getPhoneNumber());
-            student.setFatherPhoneNumber(studentDto.getFatherPhoneNumber());
-            student.setAddress(address);
+            Optional<Address> optionalAddress = addressRepository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
+                    newAddress.getRegionName(),
+                    newAddress.getDistrictName(),
+                    newAddress.getStreetName(),
+                    newAddress.getHouseNumber()
+            );
 
+            if (optionalAddress.isPresent()) {
+                newAddress = optionalAddress.get();
+            }
+
+            Passport oldPassport = student.getPassport();
+            Passport newPassport = Passport.builder()
+                    .serial(studentDto.getPassportSerial())
+                    .number(studentDto.getPassportNumber())
+                    .build();
+
+            newPassport = passportService.updatePassportNotNullField(newPassport, oldPassport);
+            if (passportService.existNewPassport(newPassport, oldPassport))
+                return ResponseApi.<Student>builder()
+                        .message(String.format("%s %s passport exist", newPassport.getSerial(), newPassport.getNumber()))
+                        .success(false)
+                        .build();
+
+            studentMapper.updateStudentFromDto(studentDto, student);
+            student.setAddress(newAddress);
+            student.setPassport(newPassport);
             student = repository.save(student);
 
             return ResponseApi.<Student>builder()
@@ -122,21 +158,21 @@ public class StudentService extends BaseService {
                     .success(true)
                     .message("Student successfully updated")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     public ResponseApi<Student> deleteStudentById(int id) {
         try {
-            Student student = repository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
+            Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
             repository.deleteById(id);
             return ResponseApi.<Student>builder()
                     .data(student)
                     .success(true)
                     .message("Student deleted successfully")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }

@@ -1,5 +1,6 @@
 package uz.uychiitschool.system.web.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -28,5 +29,6 @@ public class Course {
     Integer duration;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JsonIgnore
     List<Group> groups = new ArrayList<>();
 }

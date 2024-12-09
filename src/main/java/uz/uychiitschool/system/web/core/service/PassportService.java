@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.service.BaseService;
 import uz.uychiitschool.system.web.core.entity.Passport;
+import uz.uychiitschool.system.web.core.exception.DataNotFoundException;
 import uz.uychiitschool.system.web.core.repository.PassportRepository;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -35,13 +38,13 @@ public class PassportService extends BaseService {
 
     public ResponseApi<Passport> getPassportById(Integer id) {
         try {
-            Passport passport = repository.findById(id).orElseThrow(() -> new RuntimeException("Passport not found"));
+            Passport passport = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Passport not found"));
             return ResponseApi.<Passport>builder()
                     .data(passport)
                     .message("Passport found")
                     .success(true)
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -67,9 +70,8 @@ public class PassportService extends BaseService {
 
     public ResponseApi<Passport> update(int id, Passport newPassport) {
         try {
-            Passport passport = repository.findById(id).orElseThrow(() -> new RuntimeException("Passport not found"));
-            passport.setSerial(newPassport.getSerial());
-            passport.setNumber(newPassport.getNumber());
+            Passport passport = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Passport not found"));
+            passport = updatePassportNotNullField(newPassport, passport);
             passport = repository.save(passport);
 
             return ResponseApi.<Passport>builder()
@@ -77,14 +79,35 @@ public class PassportService extends BaseService {
                     .success(true)
                     .message("Passport successfully updated")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
 
+    public Passport updatePassportNotNullField(Passport newPassport, Passport oldPassport) {
+        if (newPassport.getSerial() != null) {
+            oldPassport.setSerial(newPassport.getSerial());
+        }
+
+        if (newPassport.getNumber() != null) {
+            oldPassport.setNumber(newPassport.getNumber());
+        }
+        return oldPassport;
+    }
+
+    public boolean existNewPassport(Passport newPassport, Passport oldPassport) {
+        if(Objects.equals(newPassport.getSerial(), oldPassport.getSerial())
+            && Objects.equals(newPassport.getNumber(), oldPassport.getNumber())) {
+            return false;
+        }
+
+        return repository.existsBySerialAndNumber(newPassport.getSerial(), newPassport.getNumber());
+    }
+
+
     public ResponseApi<Passport> delete(Integer id) {
         try {
-            Passport passport = repository.findById(id).orElseThrow(() -> new RuntimeException("Passport not found"));
+            Passport passport = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Passport not found"));
             repository.deleteById(id);
 
             return ResponseApi.<Passport>builder()
@@ -92,7 +115,7 @@ public class PassportService extends BaseService {
                     .success(true)
                     .message("Passport successfully deleted")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }

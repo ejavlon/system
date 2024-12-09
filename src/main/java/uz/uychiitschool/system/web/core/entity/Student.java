@@ -41,10 +41,10 @@ public class Student {
     @Enumerated(EnumType.STRING)
     Gender gender;
 
-    @Column(length = 20, unique = true)
+    @Column(length = 20)
     String phoneNumber;
 
-    @Column(length = 20, unique = true)
+    @Column(length = 20)
     String fatherPhoneNumber;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

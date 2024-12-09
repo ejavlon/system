@@ -9,15 +9,16 @@ import org.springframework.stereotype.Service;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.service.BaseService;
 import uz.uychiitschool.system.web.core.entity.Address;
+import uz.uychiitschool.system.web.core.exception.DataNotFoundException;
+import uz.uychiitschool.system.web.core.mapper.AddressMapper;
 import uz.uychiitschool.system.web.core.repository.AddressRepository;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AddressService extends BaseService {
 
     private final AddressRepository repository;
+    private final AddressMapper addressMapper;
 
     public ResponseApi<Page<Address>> getAllAddresses(int page, int size) {
         try {
@@ -41,13 +42,13 @@ public class AddressService extends BaseService {
 
     public ResponseApi<Address> getAddressById(int id) {
         try {
-            Address address = repository.findById(id).orElseThrow(() -> new RuntimeException("Address not found"));
+            Address address = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
             return ResponseApi.<Address>builder()
                     .data(address)
                     .success(true)
                     .message("Address found")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -76,13 +77,10 @@ public class AddressService extends BaseService {
         }
     }
 
-    public ResponseApi<Address> update(Address address, int id) {
+    public ResponseApi<Address> update(Address newAddress, int id) {
         try {
-            Optional<Address> optionalAddress = repository.findById(id);
-            Address oldAddress = optionalAddress.orElseThrow(() -> new RuntimeException("Address not found"));
-            oldAddress.setRegionName(address.getRegionName());
-            oldAddress.setDistrictName(address.getDistrictName());
-            oldAddress.setHouseNumber(address.getHouseNumber());
+            Address oldAddress = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
+            oldAddress = updateAddressNotNullField(newAddress, oldAddress);
             oldAddress = repository.save(oldAddress);
 
             return ResponseApi.<Address>builder()
@@ -90,21 +88,26 @@ public class AddressService extends BaseService {
                     .message("Address successfully updated")
                     .data(oldAddress)
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
 
+    public Address updateAddressNotNullField(Address newAddress, Address oldAddress) {
+        addressMapper.updateAddressFromDto(newAddress, oldAddress);
+        return oldAddress;
+    }
+
     public ResponseApi<Address> delete(int id) {
         try {
-            Address address = repository.findById(id).orElseThrow(() -> new RuntimeException("Address not found"));
+            Address address = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
             repository.delete(address);
             return ResponseApi.<Address>builder()
                     .success(true)
                     .message("Address successfully deleted")
                     .data(address)
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }

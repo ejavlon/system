@@ -16,6 +16,7 @@ import uz.uychiitschool.system.web.core.dto.GroupDto;
 import uz.uychiitschool.system.web.core.entity.Course;
 import uz.uychiitschool.system.web.core.entity.Group;
 import uz.uychiitschool.system.web.core.enums.GroupStatus;
+import uz.uychiitschool.system.web.core.exception.DataNotFoundException;
 import uz.uychiitschool.system.web.core.mapper.GroupMapper;
 import uz.uychiitschool.system.web.core.repository.CourseRepository;
 import uz.uychiitschool.system.web.core.repository.GroupRepository;
@@ -51,13 +52,13 @@ public class GroupService extends BaseService {
 
     public ResponseApi<Group> getGroupById(int id) {
         try {
-            Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
+            Group group = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Group not found"));
             return ResponseApi.<Group>builder()
                     .data(group)
                     .success(true)
                     .message("Group found")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -65,7 +66,7 @@ public class GroupService extends BaseService {
     @Transactional
     public ResponseApi<Group> createGroup(GroupDto groupDto) {
         try {
-            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new DataNotFoundException("Course not found"));
             LocalDateTime startDate = LocalDateTime.now();
             LocalDateTime endDate = LocalDateTime.now();
             endDate = endDate.plusMonths(course.getDuration());
@@ -88,7 +89,7 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully created")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -96,8 +97,8 @@ public class GroupService extends BaseService {
     @Transactional
     public ResponseApi<Group> createGroupSuperAdmin(GroupDto groupDto) {
         try {
-            User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new RuntimeException("Teacher not found"));
-            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
+            User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new DataNotFoundException("Teacher not found"));
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new DataNotFoundException("Course not found"));
 
             Group group = Group.builder()
                     .name(groupDto.getName())
@@ -116,7 +117,7 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully created")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -124,9 +125,9 @@ public class GroupService extends BaseService {
     @Transactional
     public ResponseApi<Group> updateGroupById(int id, GroupDto groupDto) {
         try {
-            Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
+            Group group = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Group not found"));
             User teacher = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new DataNotFoundException("Course not found"));
 
             LocalDateTime startDate = LocalDateTime.now();
             LocalDateTime endDate = LocalDateTime.now();
@@ -144,7 +145,7 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully updated")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
@@ -152,9 +153,9 @@ public class GroupService extends BaseService {
     @Transactional
     public ResponseApi<Group> updateGroupByIdWithSuperAdmin(int id, GroupDto groupDto) {
         try {
-            Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
-            User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new RuntimeException("Teacher not found"));
-            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new RuntimeException("Course not found"));
+            Group group = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Group not found"));
+            User teacher = userRepository.findById(groupDto.getTeacherId()).orElseThrow(() -> new DataNotFoundException("Teacher not found"));
+            Course course = courseRepository.findById(groupDto.getCourseId()).orElseThrow(() -> new DataNotFoundException("Course not found"));
 
             mapper.updateGroupFromDto(groupDto, group);
             group.setTeacher(teacher);
@@ -166,21 +167,21 @@ public class GroupService extends BaseService {
                     .success(true)
                     .message("Group successfully updated")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }
 
     public ResponseApi<Group> deleteGroupById(int id) {
         try {
-            Group group = repository.findById(id).orElseThrow(() -> new RuntimeException("Group not found"));
+            Group group = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Group not found"));
             repository.delete(group);
             return ResponseApi.<Group>builder()
                     .data(group)
                     .success(true)
                     .message("Group successfully deleted")
                     .build();
-        } catch (RuntimeException e) {
+        } catch (DataNotFoundException e) {
             return errorMessage(e.getMessage());
         }
     }

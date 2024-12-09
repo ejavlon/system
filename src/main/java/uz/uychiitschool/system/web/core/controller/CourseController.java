@@ -37,7 +37,7 @@ public class CourseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateCourse(@PathVariable Integer id, @Valid @RequestBody CourseDto courseDto) {
+    public ResponseEntity<?> updateCourse(@PathVariable Integer id, @RequestBody CourseDto courseDto) {
         ResponseApi<Course> responseApi = service.updateCourse(id, courseDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
