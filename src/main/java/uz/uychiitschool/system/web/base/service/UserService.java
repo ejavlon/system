@@ -9,14 +9,15 @@ import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.dto.SignInDto;
 import uz.uychiitschool.system.web.base.dto.SignUpDto;
 import uz.uychiitschool.system.web.base.entity.User;
+import uz.uychiitschool.system.web.base.enums.Gender;
 import uz.uychiitschool.system.web.base.enums.Role;
 import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
+import uz.uychiitschool.system.web.base.exception.DuplicateEntityException;
 import uz.uychiitschool.system.web.base.exception.PasswordMismatchException;
 import uz.uychiitschool.system.web.base.repository.UserRepository;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +30,7 @@ public class UserService {
 
 
     public ResponseApi<String> signIn(SignInDto signInDto){
-        User user = userRepository.findByUsername(signInDto.getUsername()).orElseThrow(() -> new DataNotFoundException("User not found"));
+        User user = findUserByIdOrUsernameOrThrow(null, signInDto.getUsername());
 
         if (!passwordEncoder.matches(signInDto.getPassword(), user.getPassword()))
             throw new PasswordMismatchException("Password mismatch");
@@ -49,17 +50,9 @@ public class UserService {
     }
 
     public ResponseApi<User> signUp(SignUpDto userDto) {
-        Optional<User> optionalUser = userRepository.findByUsername(userDto.getUsername());
-        if (optionalUser.isPresent())
-            throw new DataNotFoundException("Username is already taken");
+        findUserByIdOrUsernameOrThrow(null,userDto.getUsername());
 
-        var user = User.builder()
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .username(userDto.getUsername())
-                .password(passwordEncoder.encode(userDto.getPassword()))
-                .role(Role.USER)
-                .build();
+        var user = createOrUpdateUser(userDto, null);
         user = userRepository.save(user);
 
         return ResponseApi.<User>builder()
@@ -78,19 +71,9 @@ public class UserService {
     }
 
     public ResponseApi<User> editUserById(Integer id,SignUpDto user) {
-        User editedUser = userRepository.findById(id).orElseThrow(() -> new DataNotFoundException("User not found"));
+        User editedUser = findUserByIdOrUsernameOrThrow(id,null);
 
-        Optional<User> optionalUserByUsername = userRepository.findByUsername(user.getUsername());
-        if (optionalUserByUsername.isPresent()){
-            User user1 = optionalUserByUsername.get();
-            if (!Objects.equals(user1.getId(), editedUser.getId()))
-                throw new DataNotFoundException("Username is already taken");
-        }
-
-        editedUser.setFirstName(user.getFirstName());
-        editedUser.setLastName(user.getLastName());
-        editedUser.setPassword(user.getPassword());
-        editedUser.setUsername(user.getUsername());
+        editedUser = createOrUpdateUser(user, editedUser);
         editedUser = userRepository.save(editedUser);
 
         return ResponseApi.<User>builder()
@@ -101,18 +84,57 @@ public class UserService {
     }
 
     public ResponseApi<User> deleteUserById(Integer id){
-        Optional<User> optionalUser = userRepository.findById(id);
-        if (optionalUser.isEmpty())
-            return ResponseApi.<User>builder()
-                    .success(false)
-                    .message("User not found")
-                    .build();
-
+        findUserByIdOrUsernameOrThrow(id, null);
         userRepository.deleteById(id);
 
         return ResponseApi.<User>builder()
                 .success(true)
                 .message("Successfully deleted")
                 .build();
+    }
+
+    public User findUserByIdOrUsernameOrThrow(Integer id, String username){
+        if (username == null)
+            return userRepository.findById(id).orElseThrow(() -> new DataNotFoundException("User not found"));
+
+        return userRepository.findByUsername(username).orElseThrow(() -> new DataNotFoundException("User not found"));
+    }
+
+    public User createUser(SignUpDto userDto) {
+        Gender gender = Gender.fromString(userDto.getGender());
+        return User.builder()
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .username(userDto.getUsername())
+                .password(passwordEncoder.encode(userDto.getPassword()))
+                .gender(gender)
+                .role(Role.USER)
+                .build();
+    }
+
+    public User createOrUpdateUser(SignUpDto userDto, User existingUser) {
+        if (existingUser == null){
+            return createUser(userDto);
+        }
+
+        if (existingUser.getUsername().equals(userDto.getUsername()))
+            userRepository.findByUsername(userDto.getUsername()).orElseThrow(() -> new DuplicateEntityException("Username already exists"));
+
+        if (Objects.nonNull(existingUser.getFirstName()))
+            existingUser.setFirstName(userDto.getFirstName());
+
+        if (Objects.nonNull(userDto.getLastName()))
+            existingUser.setLastName(userDto.getLastName());
+
+        if (Objects.nonNull(userDto.getPassword()))
+            existingUser.setPassword(userDto.getPassword());
+
+        if (Objects.nonNull(userDto.getUsername()))
+            existingUser.setUsername(userDto.getUsername());
+
+        if (Objects.nonNull(userDto.getGender()))
+            existingUser.setGender(Gender.fromString(userDto.getGender()));
+
+        return existingUser;
     }
 }

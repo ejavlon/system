@@ -11,7 +11,6 @@ import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
 import uz.uychiitschool.system.web.base.exception.DuplicateEntityException;
 import uz.uychiitschool.system.web.core.dto.StudentDto;
 import uz.uychiitschool.system.web.core.entity.Address;
-import uz.uychiitschool.system.web.core.mapper.AddressMapper;
 import uz.uychiitschool.system.web.core.repository.AddressRepository;
 
 @Service
@@ -19,7 +18,6 @@ import uz.uychiitschool.system.web.core.repository.AddressRepository;
 public class AddressService {
 
     private final AddressRepository repository;
-    private final AddressMapper addressMapper;
 
     public ResponseApi<Page<Address>> getAllAddresses(int page, int size) {
         Pageable pageable = PageRequest.of(page, size,
@@ -29,20 +27,16 @@ public class AddressService {
                                 .and(Sort.sort(Address.class).by(Address::getHouseNumber).ascending())));
 
         Page<Address> addresses = repository.findAll(pageable);
-        return ResponseApi.<Page<Address>>builder()
-                .data(addresses)
-                .success(true)
-                .message(String.format("Address from %s to %s", page * size, page * size + size))
-                .build();
+        return ResponseApi.createResponse(
+                addresses,
+                String.format("Address from %s to %s", page * size, Math.min((int) addresses.getTotalElements(), page * size + size)),
+                true
+        );
     }
 
     public ResponseApi<Address> getAddressById(int id) {
-        Address address = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
-        return ResponseApi.<Address>builder()
-                .data(address)
-                .success(true)
-                .message("Address found")
-                .build();
+        Address address = findAddressById(id);
+        return ResponseApi.createResponse(address, "Address found", true);
     }
 
     public ResponseApi<Address> create(Address address) {
@@ -50,38 +44,23 @@ public class AddressService {
                 address.getRegionName(),
                 address.getDistrictName(),
                 address.getStreetName(),
-                address.getHouseNumber())){
-            throw new DuplicateEntityException("Duplicate address");
+                address.getHouseNumber())) {
+            throw new DuplicateEntityException("Address already exists");
         }
-
-
-        return ResponseApi.<Address>builder()
-                .message("Address successfully saved")
-                .data(repository.save(address))
-                .success(true)
-                .build();
+        address = updateOrCreateAddress(address, null);
+        return ResponseApi.createResponse(address, "Address successfully saved", true);
     }
 
     public ResponseApi<Address> update(Address newAddress, int id) {
-        Address oldAddress = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
-        addressMapper.updateAddressFromDto(newAddress, oldAddress);
-        oldAddress = repository.save(oldAddress);
-
-        return ResponseApi.<Address>builder()
-                .success(true)
-                .message("Address successfully updated")
-                .data(oldAddress)
-                .build();
+        Address oldAddress = findAddressById(id);
+        oldAddress = updateOrCreateAddress(newAddress, oldAddress);
+        return ResponseApi.createResponse(oldAddress, "Address successfully updated", true);
     }
 
     public ResponseApi<Address> delete(int id) {
-        Address address = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
+        Address address = findAddressById(id);
         repository.delete(address);
-        return ResponseApi.<Address>builder()
-                .success(true)
-                .message("Address successfully deleted")
-                .data(address)
-                .build();
+        return ResponseApi.createResponse(address, "Address successfully deleted", true);
     }
 
     public Address createAddress(StudentDto studentDto) {
@@ -93,15 +72,39 @@ public class AddressService {
                 .build();
     }
 
+    public Address updateOrCreateAddress(Address address, Address existingAddress) {
+        if (existingAddress == null)
+            return repository.save(address);
+
+        if (address.getRegionName() != null)
+            existingAddress.setRegionName(address.getRegionName());
+
+        if (address.getDistrictName() != null)
+            existingAddress.setDistrictName(address.getDistrictName());
+
+        if (address.getStreetName() != null)
+            existingAddress.setStreetName(address.getStreetName());
+
+        if (address.getHouseNumber() != null)
+            existingAddress.setHouseNumber(address.getHouseNumber());
+
+        return repository.save(existingAddress);
+    }
+
     public Address updateOrCreateAddress(StudentDto studentDto, Address existingAddress) {
         if (existingAddress == null) {
             return createAddress(studentDto);
         }
-        addressMapper.updateAddressFromDto(createAddress(studentDto), existingAddress);
+        Address newAddress = createAddress(studentDto);
+        existingAddress = updateOrCreateAddress(newAddress, existingAddress);
         return existingAddress;
     }
 
-    public Address findByFullField(Address address){
+    public Address findAddressById(int id) {
+        return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
+    }
+
+    public Address findByFullField(Address address) {
         return repository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
                 address.getRegionName(),
                 address.getDistrictName(),
@@ -109,5 +112,4 @@ public class AddressService {
                 address.getHouseNumber()
         ).orElse(null);
     }
-
 }

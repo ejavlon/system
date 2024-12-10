@@ -32,7 +32,7 @@ public class CourseController {
 
     @PostMapping
     public ResponseEntity<?> createCourse(@Valid @RequestBody CourseDto courseDto) {
-        ResponseApi<Course> responseApi = service.createCourse(courseDto);
+        ResponseApi<Course> responseApi = service.create(courseDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 

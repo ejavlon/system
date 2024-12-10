@@ -13,19 +13,17 @@ import uz.uychiitschool.system.web.core.dto.StudentDto;
 import uz.uychiitschool.system.web.core.entity.Address;
 import uz.uychiitschool.system.web.core.entity.Passport;
 import uz.uychiitschool.system.web.core.entity.Student;
-import uz.uychiitschool.system.web.core.enums.Gender;
-import uz.uychiitschool.system.web.core.mapper.StudentMapper;
-import uz.uychiitschool.system.web.core.repository.AddressRepository;
+import uz.uychiitschool.system.web.base.enums.Gender;
 import uz.uychiitschool.system.web.core.repository.StudentRepository;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class StudentService {
     private final StudentRepository repository;
-    private final AddressRepository addressRepository;
     private final AddressService addressService;
     private final PassportService passportService;
-    private final StudentMapper studentMapper;
 
     public ResponseApi<Page<Student>> getAllStudents(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.sort(Student.class)
@@ -33,20 +31,16 @@ public class StudentService {
                 .and(Sort.sort(Student.class).by(Student::getLastName).ascending()));
 
         Page<Student> students = repository.findAll(pageable);
-        return ResponseApi.<Page<Student>>builder()
-                .data(students)
-                .success(true)
-                .message(String.format("Students from %s to %s", page * size, Math.min((int) students.getTotalElements(), page * size + size)))
-                .build();
+        return ResponseApi.createResponse(
+                students,
+                String.format("Students from %s to %s", page * size, Math.min((int) students.getTotalElements(), page * size + size)),
+                true
+        );
     }
 
     public ResponseApi<Student> getStudentById(int id) {
-        Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
-        return ResponseApi.<Student>builder()
-                .data(student)
-                .success(true)
-                .message("Student found")
-                .build();
+        Student student = findStudentByIdOrThrow(id);
+        return ResponseApi.createResponse(student, "Student found", true);
     }
 
     @Transactional
@@ -59,21 +53,17 @@ public class StudentService {
 
         Passport passport = passportService.updateOrCreatePassport(studentDto,null);
 
-        Student student = createStudentFromStudentDto(studentDto);
+        Student student = updateOrCreateStudent(studentDto,null);
         student.setAddress(newAddress);
         student.setPassport(passport);
 
         student = repository.save(student);
-        return ResponseApi.<Student>builder()
-                .data(student)
-                .success(true)
-                .message("Student successfully created")
-                .build();
+        return ResponseApi.createResponse(student, "Student successfully created", true);
     }
 
     @Transactional
     public ResponseApi<Student> updateStudentById(int id, StudentDto studentDto) {
-        Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
+        Student student = findStudentByIdOrThrow(id);
 
         Address oldAddress = student.getAddress();
         Address newAddress = addressService.updateOrCreateAddress(studentDto, oldAddress);
@@ -90,29 +80,26 @@ public class StudentService {
         student.setPassport(newPassport);
         student = repository.save(student);
 
-        return ResponseApi.<Student>builder()
-                .data(student)
-                .success(true)
-                .message("Student successfully updated")
-                .build();
+        return ResponseApi.createResponse(student, "Student successfully updated", true);
     }
 
     public ResponseApi<Student> deleteStudentById(int id) {
-        Student student = repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
+        Student student = findStudentByIdOrThrow(id);
         repository.deleteById(id);
-        return ResponseApi.<Student>builder()
-                .data(student)
-                .success(true)
-                .message("Student deleted successfully")
-                .build();
+        return ResponseApi.createResponse(student, "Student successfully deleted", true);
+    }
+
+    public Student findStudentByIdOrThrow(int id) {
+        return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Student not found"));
     }
 
     public Student createStudentFromStudentDto(StudentDto studentDto) {
+        Gender gender = Gender.fromString(studentDto.getGender());
         return Student.builder()
                 .firstName(studentDto.getFirstName())
                 .lastName(studentDto.getLastName())
                 .birthday(studentDto.getBirthDate())
-                .gender(Gender.valueOf(studentDto.getGender()))
+                .gender(gender)
                 .fatherName(studentDto.getFatherName())
                 .phoneNumber(studentDto.getPhoneNumber())
                 .fatherPhoneNumber(studentDto.getFatherPhoneNumber())
@@ -123,7 +110,27 @@ public class StudentService {
         if (existingStudent == null) {
             return createStudentFromStudentDto(studentDto);
         }
-        studentMapper.updateStudentFromDto(studentDto, existingStudent);
+        if (studentDto.getFirstName() != null)
+            existingStudent.setFirstName(studentDto.getFirstName());
+
+        if (studentDto.getLastName() != null)
+            existingStudent.setLastName(studentDto.getLastName());
+
+        if (studentDto.getBirthDate() != null)
+            existingStudent.setBirthday(studentDto.getBirthDate());
+
+        if (studentDto.getFatherName() != null)
+            existingStudent.setFatherName(studentDto.getFatherName());
+
+        if (studentDto.getPhoneNumber() != null)
+            existingStudent.setPhoneNumber(studentDto.getPhoneNumber());
+
+        if (studentDto.getFatherPhoneNumber() != null)
+            existingStudent.setFatherPhoneNumber(studentDto.getFatherPhoneNumber());
+
+        if (Objects.nonNull(studentDto.getGender())){
+            existingStudent.setGender(Gender.fromString(studentDto.getGender()));
+        }
         return existingStudent;
     }
 }

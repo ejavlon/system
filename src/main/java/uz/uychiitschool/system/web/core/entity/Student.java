@@ -3,7 +3,7 @@ package uz.uychiitschool.system.web.core.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import uz.uychiitschool.system.web.core.enums.Gender;
+import uz.uychiitschool.system.web.base.enums.Gender;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

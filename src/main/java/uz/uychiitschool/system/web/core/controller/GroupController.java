@@ -33,7 +33,7 @@ public class GroupController {
 
     @PostMapping
     public ResponseEntity<?> createGroup(@Valid @RequestBody GroupDto groupDto) {
-        ResponseApi<Group> responseApi = service.createGroup(groupDto);
+        ResponseApi<Group> responseApi = service.create(groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 

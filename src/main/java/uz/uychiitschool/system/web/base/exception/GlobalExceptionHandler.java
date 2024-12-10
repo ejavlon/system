@@ -30,6 +30,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(InvalidGenderException.class)
+    public ResponseEntity<ResponseApi<Void>> handleInvalidGenderException(DuplicateEntityException ex, WebRequest request) {
+        ResponseApi<Void> response = ResponseApi.<Void>builder()
+                .success(false)
+                .message(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
     // 3. RuntimeException (umumiy exception) uchun exception handler
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ResponseApi<Void>> handleRuntimeException(RuntimeException ex, WebRequest request) {

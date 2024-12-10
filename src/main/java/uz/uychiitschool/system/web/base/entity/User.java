@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import uz.uychiitschool.system.web.base.enums.Gender;
 import uz.uychiitschool.system.web.base.enums.Role;
 
 import java.io.Serializable;
@@ -34,6 +35,9 @@ public class User implements UserDetails, Serializable {
     String username;
 
     String password;
+
+    @Enumerated(EnumType.STRING)
+    Gender gender;
 
     @Enumerated(EnumType.STRING)
     Role role;

@@ -22,4 +22,6 @@ public class SignUpDto {
 
     @NotNull(message = "password is null")
     String password;
+
+    String gender;
 }

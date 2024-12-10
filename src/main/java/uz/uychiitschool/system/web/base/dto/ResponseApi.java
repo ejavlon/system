@@ -25,4 +25,20 @@ public class ResponseApi<T>  {
     public boolean isSuccess() {
         return success;
     }
+
+    public static <T> ResponseApi<T> createResponse(T data, String message, boolean success) {
+        return ResponseApi.<T>builder()
+                .data(data)
+                .message(message)
+                .success(success)
+                .build();
+    }
+
+    public static <T> ResponseApi<T> createResponse(String message, boolean success) {
+        return ResponseApi.<T>builder()
+                .data(null)
+                .message(message)
+                .success(success)
+                .build();
+    }
 }
