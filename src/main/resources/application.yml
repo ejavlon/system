@@ -1,0 +1,69 @@
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        secure: false
+
+spring:
+  application:
+    name: UYCHI IT SCHOOL SYSTEM
+  servlet:
+    multipart:
+      enabled: true
+      max-request-size: 100MB
+      max-file-size: 100MB
+  datasource:
+    url: jdbc:h2:file:./data/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: javlon
+    password: root
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  sql:
+    init:
+      mode: always
+
+#springdoc:
+#  api-docs:
+#    path: /v3/api-docs
+#  swagger-ui:
+#    operations-sorter: method
+#    theme: dark
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs  # API hujjatlarining URL manzili
+  swagger-ui:
+    path: /swagger-ui.html  # Swagger UI manzili
+    display-operation-id: true  # Har bir operatsiyani ID bilan ko'rsatish
+    default-model-rendering: model  # Modelni `model` yoki `example` formatida ko'rsatish
+    doc-expansion: none  # Swagger UI'da ochiladigan hujjatlarni boshqarish (none, list, full)
+    deep-linking: true  # Har bir API metodining alohida havolasini yaratish
+    filter: true  # Swagger UI uchun filtrlashni yoqish
+    show-url: true  # Swagger UI'da URLni ko'rsatish
+    theme: dark  # Swagger UI mavzusini tanlash (light yoki dark)
+    show-extensions: true  # Swagger UI uchun kengaytmalarni ko‘rsatish
+  info:
+    title: My API
+    description: API documentation for My Application
+    version: 1.0.0
+
+logging:
+  level:
+    root: warn
+    web: info
+    uz:
+      uychiitschool: debug
+
+
+token:
+  secret:
+    key: 0193ab71-3a2d-7232-8b5a-077b605696ae-0193ab71-d109-73ae-9c70-bbb1206dd76a
