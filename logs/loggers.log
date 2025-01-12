@@ -147,3 +147,13 @@
 2025-01-12 13:15:16 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
 2025-01-12 13:15:16 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
 2025-01-12 13:15:28 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-12 13:28:35 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 21 with PID 19919 (/home/javlon/IdeaProjects/system/target/classes started by javlon in /home/javlon/IdeaProjects/system)
+2025-01-12 13:28:35 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-12 13:28:35 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-12 13:28:38 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-12 13:28:38 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-12 13:28:39 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-12 13:28:39 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 4.845 seconds (process running for 5.336)
+2025-01-12 13:28:40 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-12 13:28:40 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-12 13:28:45 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 

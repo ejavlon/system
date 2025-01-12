@@ -1,5 +1,9 @@
 package uz.uychiitschool.system.web.core.service;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.common.BitMatrix;
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.geom.PageSize;
@@ -8,7 +12,6 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import uz.uychiitschool.system.web.core.entity.Certificate;
 import uz.uychiitschool.system.web.core.repository.CertificateRepository;
@@ -19,6 +22,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -42,6 +47,7 @@ public class CertificateService {
 
     public byte [] createPdfFromImage(String text) throws Exception {
         BufferedImage image = addTextToImage(text);
+        image = addQrCodeToImage("https://ejavlon.uz",image);
 
         // Rasmdan byte massivini olish
         ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
@@ -103,6 +109,31 @@ public class CertificateService {
         graphics.drawString(text, 50, 50); // X va Y koordinatalari
 
         graphics.dispose();
+        return image;
+    }
+
+    public BufferedImage addQrCodeToImage(String text, BufferedImage image) throws Exception {
+        // QR kodni yaratish
+        int qrSize = 150;  // QR kodning o'lchami
+        Map<EncodeHintType, Object> hints = new HashMap<>();
+        hints.put(EncodeHintType.MARGIN, 1);  // QR kod chetini sozlash
+        BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, qrSize, qrSize, hints);
+
+        // QR kodni BufferedImage formatida yaratish
+        BufferedImage qrImage = new BufferedImage(qrSize, qrSize, BufferedImage.TYPE_INT_RGB);
+        for (int i = 0; i < qrSize; i++) {
+            for (int j = 0; j < qrSize; j++) {
+                qrImage.setRGB(i, j, matrix.get(i, j) ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
+            }
+        }
+
+        // QR kodni original rasmga joylashtirish
+        Graphics2D graphics = image.createGraphics();
+        int x = 250;  // QR kodni joylashtirish uchun x koordinatasi
+        int y = 250;  // QR kodni joylashtirish uchun y koordinatasi
+        graphics.drawImage(qrImage, x, y, null);
+        graphics.dispose();
+
         return image;
     }
 }
