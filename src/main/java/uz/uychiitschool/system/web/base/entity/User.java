@@ -20,11 +20,7 @@ import java.util.List;
 @Entity
 @Table(name = "_users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User implements UserDetails, Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+public class User extends BaseEntity implements UserDetails, Serializable {
     @Column(name = "first_name",length = 50)
     String firstName;
 

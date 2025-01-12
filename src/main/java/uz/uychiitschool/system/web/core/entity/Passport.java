@@ -3,6 +3,7 @@ package uz.uychiitschool.system.web.core.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import uz.uychiitschool.system.web.base.entity.BaseEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +17,7 @@ import lombok.experimental.FieldDefaults;
         }
 )
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Passport {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+public class Passport extends BaseEntity {
     @Column(length = 5)
     String serial;
 

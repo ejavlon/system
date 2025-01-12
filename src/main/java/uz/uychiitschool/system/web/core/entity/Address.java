@@ -3,6 +3,7 @@ package uz.uychiitschool.system.web.core.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import uz.uychiitschool.system.web.base.entity.BaseEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,11 +15,7 @@ import lombok.experimental.FieldDefaults;
         uniqueConstraints = @UniqueConstraint(columnNames = {"regionName", "districtName", "streetName", "houseNumber"})
 )
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+public class Address extends BaseEntity {
     @Column(length = 20)
     String regionName;
 

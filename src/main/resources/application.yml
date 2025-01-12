@@ -43,14 +43,14 @@ springdoc:
     path: /v3/api-docs  # API hujjatlarining URL manzili
   swagger-ui:
     path: /swagger-ui.html  # Swagger UI manzili
-    display-operation-id: true  # Har bir operatsiyani ID bilan ko'rsatish
-    default-model-rendering: model  # Modelni `model` yoki `example` formatida ko'rsatish
-    doc-expansion: none  # Swagger UI'da ochiladigan hujjatlarni boshqarish (none, list, full)
-    deep-linking: true  # Har bir API metodining alohida havolasini yaratish
-    filter: true  # Swagger UI uchun filtrlashni yoqish
-    show-url: true  # Swagger UI'da URLni ko'rsatish
-    theme: dark  # Swagger UI mavzusini tanlash (light yoki dark)
-    show-extensions: true  # Swagger UI uchun kengaytmalarni ko‘rsatish
+#    display-operation-id: true  # Har bir operatsiyani ID bilan ko'rsatish
+#    default-model-rendering: model  # Modelni `model` yoki `example` formatida ko'rsatish
+#    doc-expansion: none  # Swagger UI'da ochiladigan hujjatlarni boshqarish (none, list, full)
+#    deep-linking: true  # Har bir API metodining alohida havolasini yaratish
+#    filter: true  # Swagger UI uchun filtrlashni yoqish
+#    show-url: true  # Swagger UI'da URLni ko'rsatish
+#    theme: dark  # Swagger UI mavzusini tanlash (light yoki dark)
+#    show-extensions: true  # Swagger UI uchun kengaytmalarni ko‘rsatish
   info:
     title: My API
     description: API documentation for My Application

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import uz.uychiitschool.system.web.base.entity.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "_course")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Course {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+public class Course extends BaseEntity {
     @Column(length = 50, unique = true, nullable = false)
     String name;
 

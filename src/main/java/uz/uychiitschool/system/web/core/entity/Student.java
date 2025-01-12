@@ -3,6 +3,7 @@ package uz.uychiitschool.system.web.core.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import uz.uychiitschool.system.web.base.entity.BaseEntity;
 import uz.uychiitschool.system.web.base.enums.Gender;
 
 import java.time.LocalDate;
@@ -16,11 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "_student")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+public class Student extends BaseEntity {
     @OneToOne(cascade = {CascadeType.ALL})
     Address address;
 

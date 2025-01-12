@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import uz.uychiitschool.system.web.base.entity.BaseEntity;
 import uz.uychiitschool.system.web.base.entity.User;
 import uz.uychiitschool.system.web.core.enums.GroupStatus;
 
@@ -18,11 +19,7 @@ import java.util.List;
 @Entity
 @Table(name = "_group")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Group {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-
+public class Group extends BaseEntity {
     @Column(nullable = false, length = 50, unique = true)
     String name;
 
