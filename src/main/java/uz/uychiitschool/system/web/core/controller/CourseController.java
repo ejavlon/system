@@ -17,6 +17,7 @@ import uz.uychiitschool.system.web.core.service.CourseService;
 public class CourseController {
     private final CourseService service;
 
+
     @GetMapping
     public ResponseEntity<?> getAllCourses(@RequestParam(required = false) Integer page,
                                            @RequestParam(required = false) Integer size) {
