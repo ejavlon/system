@@ -20,6 +20,7 @@ import uz.uychiitschool.system.web.base.service.UserService;
 import uz.uychiitschool.system.web.core.dto.CertificateDto;
 import uz.uychiitschool.system.web.core.entity.Certificate;
 import uz.uychiitschool.system.web.core.entity.Course;
+import uz.uychiitschool.system.web.core.entity.Student;
 import uz.uychiitschool.system.web.core.repository.CertificateRepository;
 
 import javax.imageio.ImageIO;
@@ -39,6 +40,7 @@ public class CertificateService {
     private final CertificateRepository repository;
     private final CourseService courseService;
     private final UserService userService;
+    private final StudentService studentService;
     private final QrCodeService qrCodeService;
 
     public Certificate createCertificate() {
@@ -65,7 +67,20 @@ public class CertificateService {
     }
 
     public ResponseApi<Certificate> create(CertificateDto certificateDto){
-        return null;
+        Certificate certificate = createOrUpdateCertificate(certificateDto, null);
+        return ResponseApi.createResponse(certificate, "Certificate successfully created", true);
+    }
+
+    public ResponseApi<Certificate> update(UUID id, CertificateDto certificateDto) {
+        Certificate existingCertificate = findCertificateByIdOrThrow(id);
+        existingCertificate = createOrUpdateCertificate(certificateDto, existingCertificate);
+        return ResponseApi.createResponse(existingCertificate, "Certificate successfully updated", true);
+    }
+
+    public ResponseApi<Certificate> deleteCertificateById(UUID id) {
+        Certificate certificate = findCertificateByIdOrThrow(id);
+        repository.delete(certificate);
+        return ResponseApi.createResponse(certificate, "Certificate successfully deleted", true);
     }
 
     public Certificate createCertificate(CertificateDto certificateDto){
@@ -77,9 +92,16 @@ public class CertificateService {
 
         Course course = courseService.findCourseByIdOrThrow(certificateDto.getCourseId());
         User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
+        Student student = studentService.findStudentByIdOrThrow(certificateDto.getStudentId());
 
-
-        return null;
+        return Certificate.builder()
+                .date(date)
+                .course(course)
+                .teacher(teacher)
+                .student(student)
+                .serial(UUID.randomUUID().toString().toUpperCase().substring(0, 2))
+                .number(String.valueOf(repository.count() + 10000))
+                .build();
     }
 
     public Certificate createOrUpdateCertificate(CertificateDto certificateDto, Certificate exsistingCertificate) {
@@ -87,7 +109,26 @@ public class CertificateService {
             return createCertificate(certificateDto);
         }
 
-        return null;
+        if (certificateDto.getDate() != null && certificateDto.getDate().isBefore(LocalDateTime.now())) {
+            exsistingCertificate.setDate(certificateDto.getDate());
+        }
+
+        if (certificateDto.getStudentId() != null) {
+            Student student = studentService.findStudentByIdOrThrow(certificateDto.getStudentId());
+            exsistingCertificate.setStudent(student);
+        }
+
+        if (certificateDto.getTeacherId() != null) {
+            User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
+            exsistingCertificate.setTeacher(teacher);
+        }
+
+        if (certificateDto.getCourseId() != null) {
+            Course course = courseService.findCourseByIdOrThrow(certificateDto.getCourseId());
+            exsistingCertificate.setCourse(course);
+        }
+
+        return exsistingCertificate;
     }
 
     public Certificate findCertificateByIdOrThrow(UUID id) {
