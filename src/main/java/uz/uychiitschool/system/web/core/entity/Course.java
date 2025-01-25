@@ -11,7 +11,8 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "_course")

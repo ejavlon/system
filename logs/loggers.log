@@ -1,9 +1,937 @@
-2025-01-13 21:09:23 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 21 with PID 3122 (/home/javlon/IdeaProjects/system/target/classes started by javlon in /home/javlon/IdeaProjects/system)
-2025-01-13 21:09:23 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
-2025-01-13 21:09:23 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
-2025-01-13 21:09:27 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
-2025-01-13 21:09:27 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
-2025-01-13 21:09:28 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
-2025-01-13 21:09:28 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.552 seconds (process running for 6.294)
-2025-01-13 21:09:29 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2025-01-13 21:09:29 [RMI TCP Connection(4)-127.0.0.1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:14:04 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4288 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:14:04 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:14:04 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:14:08 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:14:08 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:14:09 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:14:09 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.108 seconds (process running for 7.09)
+2025-01-25 17:14:10 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:14:10 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:14:10 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:14:12 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:17:23 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: failed to lazily initialize a collection of role: uz.uychiitschool.system.web.core.entity.Student.groups: could not initialize proxy - no Session]
+2025-01-25 17:18:58 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3080 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:18:58 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:18:58 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:19:02 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:19:02 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:19:03 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:19:04 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.522 seconds (process running for 8.234)
+2025-01-25 17:19:04 [RMI TCP Connection(5)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:19:04 [RMI TCP Connection(5)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-01-25 17:19:58 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=56s687ms732µs386ns).
+2025-01-25 17:22:08 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m10s892ms472µs136ns).
+2025-01-25 17:23:49 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3316 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:23:49 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:23:49 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:23:53 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:23:53 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:23:54 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:23:54 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.915 seconds (process running for 6.683)
+2025-01-25 17:23:55 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:23:55 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:24:05 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:24:07 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:24:15 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.http.converter.HttpMessageNotWritableException: Could not write JSON: failed to lazily initialize a collection of role: uz.uychiitschool.system.web.core.entity.Student.groups: could not initialize proxy - no Session]
+2025-01-25 17:25:49 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 2744 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:25:49 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:25:49 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:25:52 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:25:52 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:25:53 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:25:54 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.45 seconds (process running for 6.18)
+2025-01-25 17:25:54 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:25:54 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 11 ms
+2025-01-25 17:26:35 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:26:36 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:27:52 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3560 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:27:52 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:27:52 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:27:57 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:27:57 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:27:58 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:27:59 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 7.132 seconds (process running for 7.824)
+2025-01-25 17:28:00 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:28:00 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2025-01-25 17:28:01 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 17:28:14 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:28:15 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:28:22 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 17:29:57 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 17:30:22 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 868 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:30:22 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:30:22 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:30:26 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:30:26 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:30:27 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:30:27 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.31 seconds (process running for 7.365)
+2025-01-25 17:30:28 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:30:28 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:32:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m53s388ms32µs637ns).
+2025-01-25 17:33:02 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 17:33:57 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5036 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:33:57 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:33:57 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:34:01 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:34:01 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:34:02 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:34:02 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.806 seconds (process running for 6.513)
+2025-01-25 17:34:03 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:34:03 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 17:34:30 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 17:40:26 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5036 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:40:26 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:40:26 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:40:28 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:40:28 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:40:28 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:40:28 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.075 seconds (process running for 392.734)
+2025-01-25 17:40:30 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5036 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:40:30 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:40:30 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:40:31 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:40:31 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:40:31 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:40:32 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.637 seconds (process running for 395.816)
+2025-01-25 17:41:01 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5036 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:41:01 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:41:01 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:41:02 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:41:02 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:41:02 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:41:03 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.09 seconds (process running for 426.883)
+2025-01-25 17:41:04 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5036 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:41:04 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:41:04 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:41:05 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:41:05 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:41:05 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:41:06 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.533 seconds (process running for 429.867)
+2025-01-25 17:41:28 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4708 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:41:28 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:41:28 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:41:32 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:41:33 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:41:33 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:41:34 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.058 seconds (process running for 6.883)
+2025-01-25 17:41:35 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:41:35 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:43:24 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:43:25 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:48:53 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3424 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:48:53 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:48:53 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:48:57 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:48:57 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:48:58 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:48:59 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.915 seconds (process running for 7.591)
+2025-01-25 17:48:59 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:48:59 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:49:00 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:49:02 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:49:55 [http-nio-8080-exec-4] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 17:51:56 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3604 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:51:56 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:51:56 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:52:00 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:52:00 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:52:01 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:52:02 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.9 seconds (process running for 6.66)
+2025-01-25 17:52:02 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:52:02 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:52:11 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 17:57:03 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 1308 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:57:03 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:57:03 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:57:07 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:57:07 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:57:08 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:57:09 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.979 seconds (process running for 6.834)
+2025-01-25 17:57:09 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:57:09 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-01-25 17:57:13 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 17:57:48 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:57:49 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 17:58:17 [http-nio-8080-exec-2] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 17:58:50 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3128 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:58:50 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:58:50 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:58:54 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:58:54 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:58:55 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:58:56 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.322 seconds (process running for 7.051)
+2025-01-25 17:58:57 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:58:57 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 17:59:02 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 17:59:19 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.tcp - RMI TCP Connection(1)-192.168.1.248: (port 54725) op = 82
+2025-01-25 17:59:19 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.tcp - RMI TCP Connection(1)-192.168.1.248: (port 54725) op = 80
+2025-01-25 17:59:19 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.misc - RMI TCP Connection(1)-192.168.1.248: getting input stream
+2025-01-25 17:59:19 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5004 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 17:59:19 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 17:59:19 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 17:59:22 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 17:59:22 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 17:59:23 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 17:59:24 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.849 seconds (process running for 6.556)
+2025-01-25 17:59:24 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 17:59:24 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 17:59:29 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:00:11 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5280 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:00:11 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:00:11 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:00:14 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:00:14 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:00:15 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:00:16 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.494 seconds (process running for 6.298)
+2025-01-25 18:00:16 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:00:16 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:00:21 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:00:40 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 2340 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:00:40 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:00:40 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:00:45 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:00:45 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:00:46 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:00:46 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.327 seconds (process running for 6.986)
+2025-01-25 18:00:47 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:00:47 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-01-25 18:00:52 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:01:57 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 18:01:59 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 18:02:33 [http-nio-8080-exec-5] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:03:36 [http-nio-8080-exec-9] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:09:37 [http-nio-8080-exec-2] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:10:00 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5064 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:10:00 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:10:00 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:10:03 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:10:04 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:10:04 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:10:05 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.805 seconds (process running for 6.49)
+2025-01-25 18:10:05 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:10:05 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:10:11 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:11:42 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5528 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:11:42 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:11:42 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:11:45 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:11:45 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:11:46 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:11:47 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.556 seconds (process running for 6.28)
+2025-01-25 18:11:47 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:11:47 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:11:55 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:12:13 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5528 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:12:13 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:12:13 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:12:15 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:12:15 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:12:15 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'certificateController' defined in file [D:\system\target\classes\uz\uychiitschool\system\web\core\controller\CertificateController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'certificateService' defined in file [D:\system\target\classes\uz\uychiitschool\system\web\core\service\CertificateService.class]: Unsatisfied dependency expressed through constructor parameter 4: No qualifying bean of type 'uz.uychiitschool.system.web.core.service.QrCodeService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-25 18:12:15 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 4 of constructor in uz.uychiitschool.system.web.core.service.CertificateService required a bean of type 'uz.uychiitschool.system.web.core.service.QrCodeService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'uz.uychiitschool.system.web.core.service.QrCodeService' in your configuration.
+
+2025-01-25 18:12:16 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5528 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:12:16 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:12:16 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:12:17 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:12:17 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:12:18 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:12:18 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.123 seconds (process running for 38.074)
+2025-01-25 18:12:27 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5020 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:12:27 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:12:27 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:12:31 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:12:31 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:12:32 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:12:33 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.495 seconds (process running for 7.236)
+2025-01-25 18:12:34 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:12:34 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-01-25 18:12:35 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:12:49 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5020 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:12:49 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:12:49 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:12:50 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:12:50 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:12:50 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:12:51 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.489 seconds (process running for 25.568)
+2025-01-25 18:13:05 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5020 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:13:05 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:13:05 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:13:09 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5868 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:13:09 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:13:09 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:13:14 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:13:14 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:13:15 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:13:15 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 7.001 seconds (process running for 7.972)
+2025-01-25 18:13:16 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:13:16 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:13:18 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:13:55 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3748 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:13:55 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:13:55 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:13:59 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:13:59 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:14:00 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:14:01 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.05 seconds (process running for 6.678)
+2025-01-25 18:14:01 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:14:01 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:14:03 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:14:15 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3748 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:14:15 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:14:15 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:14:19 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 1312 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:14:19 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:14:19 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:14:23 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:14:23 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:14:23 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:14:24 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.944 seconds (process running for 6.72)
+2025-01-25 18:14:25 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:14:25 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 18:14:28 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:20:21 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 6052 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:20:21 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:20:21 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:20:26 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:20:26 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:20:27 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:20:27 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.575 seconds (process running for 7.382)
+2025-01-25 18:20:28 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:20:28 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:20:31 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:24:44 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 6052 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:24:44 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:24:44 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:24:45 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:24:45 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:24:45 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'certificateController' defined in file [D:\system\target\classes\uz\uychiitschool\system\web\core\controller\CertificateController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-25 18:24:45 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in uz.uychiitschool.system.web.core.controller.CertificateController required a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' in your configuration.
+
+2025-01-25 18:24:47 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 6052 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:24:47 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:24:47 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:24:48 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:24:49 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:24:49 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:24:50 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 3.065 seconds (process running for 269.902)
+2025-01-25 18:26:55 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 6052 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:26:55 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:26:55 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:26:56 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:26:56 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:26:56 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'certificateController' defined in file [D:\system\target\classes\uz\uychiitschool\system\web\core\controller\CertificateController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-25 18:26:56 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in uz.uychiitschool.system.web.core.controller.CertificateController required a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' in your configuration.
+
+2025-01-25 18:26:58 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 6052 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:26:58 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:26:58 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:26:59 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:26:59 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:26:59 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:27:00 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.782 seconds (process running for 399.546)
+2025-01-25 18:27:19 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 1476 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:27:19 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:27:19 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:27:23 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:27:23 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:27:24 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:27:24 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.906 seconds (process running for 6.601)
+2025-01-25 18:27:25 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:27:25 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 8 ms
+2025-01-25 18:27:28 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:28:22 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5380 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:28:22 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:28:22 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:28:26 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:28:26 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:28:27 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:28:28 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.348 seconds (process running for 7.067)
+2025-01-25 18:28:28 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:28:28 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-01-25 18:28:35 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:29:13 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5580 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:29:13 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:29:13 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:29:18 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:29:18 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:29:18 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:29:19 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.838 seconds (process running for 7.489)
+2025-01-25 18:29:20 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:29:20 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-01-25 18:29:21 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:30:47 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5580 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:30:47 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:30:47 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:30:47 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:30:48 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:30:48 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'certificateController': Resolution of declared constructors on bean Class [uz.uychiitschool.system.web.core.controller.CertificateController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@11599991] failed
+2025-01-25 18:30:48 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'certificateController': Resolution of declared constructors on bean Class [uz.uychiitschool.system.web.core.controller.CertificateController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@11599991] failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:384)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1314)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1209)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at uz.uychiitschool.system.SystemApplication.main(SystemApplication.java:15)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.NoClassDefFoundError: uz/uychiitschool/system/web/core/service/CertificateService
+	at java.base/java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3621)
+	at java.base/java.lang.Class.getDeclaredConstructors(Class.java:2786)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:379)
+	... 21 common frames omitted
+Caused by: java.lang.ClassNotFoundException: uz.uychiitschool.system.web.core.service.CertificateService
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:578)
+	at java.base/java.lang.Class.forName(Class.java:557)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	... 25 common frames omitted
+2025-01-25 18:31:42 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5580 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:31:42 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:31:42 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:31:43 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:31:43 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:31:44 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:31:44 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.687 seconds (process running for 151.976)
+2025-01-25 18:32:27 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 1188 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:32:27 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:32:27 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:32:31 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:32:32 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:32:32 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:32:33 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.411 seconds (process running for 7.104)
+2025-01-25 18:32:33 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:32:33 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:32:36 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:33:06 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4160 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:33:06 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:33:06 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:33:10 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:33:10 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:33:11 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:33:12 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.732 seconds (process running for 6.464)
+2025-01-25 18:33:12 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:33:12 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:33:18 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:33:39 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4160 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:33:39 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:33:39 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:33:40 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:33:40 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:33:40 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'certificateController' defined in file [D:\system\target\classes\uz\uychiitschool\system\web\core\controller\CertificateController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-25 18:33:41 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in uz.uychiitschool.system.web.core.controller.CertificateController required a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' in your configuration.
+
+2025-01-25 18:33:42 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4160 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:33:42 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:33:42 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:33:43 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:33:43 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:33:44 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:33:44 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.18 seconds (process running for 38.954)
+2025-01-25 18:34:25 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4916 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:34:25 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:34:25 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:34:29 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:34:29 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:34:30 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:34:31 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.078 seconds (process running for 7.099)
+2025-01-25 18:34:31 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:34:31 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:34:32 [http-nio-8080-exec-2] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:35:04 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5128 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:35:04 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:35:04 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:35:08 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:35:08 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:35:09 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:35:10 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.529 seconds (process running for 7.286)
+2025-01-25 18:35:10 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:35:10 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:35:12 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:35:29 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3108 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:35:29 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:35:29 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:35:33 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:35:33 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:35:34 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:35:35 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.029 seconds (process running for 6.712)
+2025-01-25 18:35:36 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:35:36 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 18:35:39 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:36:00 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3108 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:36:00 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:36:00 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:36:01 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:36:01 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:36:01 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'certificateController' defined in file [D:\system\target\classes\uz\uychiitschool\system\web\core\controller\CertificateController.class]: Unsatisfied dependency expressed through constructor parameter 0: No qualifying bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2025-01-25 18:36:01 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in uz.uychiitschool.system.web.core.controller.CertificateController required a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'uz.uychiitschool.system.web.core.service.CertificateService' in your configuration.
+
+2025-01-25 18:36:03 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3108 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:36:03 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:36:03 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:36:04 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:36:04 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:36:05 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:36:05 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.517 seconds (process running for 36.753)
+2025-01-25 18:36:12 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4736 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:36:12 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:36:12 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:36:16 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:36:16 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:36:17 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:36:18 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.261 seconds (process running for 6.922)
+2025-01-25 18:36:18 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:36:18 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:36:20 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:38:07 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4736 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:38:07 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:38:07 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:38:09 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:38:09 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:38:09 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'certificateController': Resolution of declared constructors on bean Class [uz.uychiitschool.system.web.core.controller.CertificateController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@45723cac] failed
+2025-01-25 18:38:09 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'certificateController': Resolution of declared constructors on bean Class [uz.uychiitschool.system.web.core.controller.CertificateController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@45723cac] failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:384)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1314)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1209)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:562)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:971)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at uz.uychiitschool.system.SystemApplication.main(SystemApplication.java:15)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.NoClassDefFoundError: uz/uychiitschool/system/web/core/service/CertificateService
+	at java.base/java.lang.Class.getDeclaredConstructors0(Native Method)
+	at java.base/java.lang.Class.privateGetDeclaredConstructors(Class.java:3621)
+	at java.base/java.lang.Class.getDeclaredConstructors(Class.java:2786)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:379)
+	... 21 common frames omitted
+Caused by: java.lang.ClassNotFoundException: uz.uychiitschool.system.web.core.service.CertificateService
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:578)
+	at java.base/java.lang.Class.forName(Class.java:557)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	... 25 common frames omitted
+2025-01-25 18:38:11 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4736 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:38:11 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:38:11 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:38:12 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:38:12 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:38:16 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4148 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:38:16 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:38:16 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:38:21 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:38:21 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:38:22 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:38:23 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.556 seconds (process running for 7.29)
+2025-01-25 18:38:23 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:38:23 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:38:24 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 18:40:21 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 18:40:23 [http-nio-8080-exec-6] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 18:42:46 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-01-25 18:42:46 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение уникального индекса или первичного ключа: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"
+Unique index or primary key violation: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:
+insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]
+2025-01-25 18:42:46 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение уникального индекса или первичного ключа: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"<EOL>Unique index or primary key violation: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:<EOL>insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]] [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; constraint [PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C]]
+2025-01-25 18:44:52 [http-nio-8080-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-01-25 18:44:52 [http-nio-8080-exec-4] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение уникального индекса или первичного ключа: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"
+Unique index or primary key violation: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:
+insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]
+2025-01-25 18:44:52 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение уникального индекса или первичного ключа: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"<EOL>Unique index or primary key violation: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:<EOL>insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]] [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; constraint [PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C]]
+2025-01-25 18:48:09 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3332 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:48:09 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:48:09 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:48:13 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:48:13 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:48:14 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:48:15 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.487 seconds (process running for 7.241)
+2025-01-25 18:48:16 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:48:16 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 18:48:20 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-01-25 18:48:20 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение уникального индекса или первичного ключа: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"
+Unique index or primary key violation: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:
+insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]
+2025-01-25 18:48:20 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение уникального индекса или первичного ключа: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"<EOL>Unique index or primary key violation: "PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C ON PUBLIC.""_CERTIFICATE""(COURSE_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:<EOL>insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]] [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; constraint [PUBLIC.UK4SG37KO56EOUM5NH2JBUE139J_INDEX_C]]
+2025-01-25 18:49:19 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5764 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:49:19 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:49:19 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:49:25 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:49:25 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:49:26 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:49:27 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 8.335 seconds (process running for 9.038)
+2025-01-25 18:49:27 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:49:27 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2025-01-25 18:50:00 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 18:50:01 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 18:52:06 [http-nio-8080-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-01-25 18:52:06 [http-nio-8080-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение уникального индекса или первичного ключа: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"
+Unique index or primary key violation: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:
+insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]
+2025-01-25 18:52:06 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение уникального индекса или первичного ключа: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"<EOL>Unique index or primary key violation: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:<EOL>insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]] [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; constraint [PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C]]
+2025-01-25 18:55:13 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5764 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:55:13 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:55:13 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:55:14 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:55:14 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:55:15 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:55:15 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.358 seconds (process running for 357.346)
+2025-01-25 18:55:17 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5764 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:55:17 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:55:17 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:55:18 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:55:18 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:55:18 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:55:19 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.85 seconds (process running for 360.633)
+2025-01-25 18:55:26 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5696 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 18:55:26 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 18:55:26 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 18:55:30 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 18:55:30 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 18:55:31 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 18:55:31 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.451 seconds (process running for 7.162)
+2025-01-25 18:55:32 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 18:55:32 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 18:55:36 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23505, SQLState: 23505
+2025-01-25 18:55:36 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение уникального индекса или первичного ключа: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"
+Unique index or primary key violation: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:
+insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]
+2025-01-25 18:55:36 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение уникального индекса или первичного ключа: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"<EOL>Unique index or primary key violation: "PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C ON PUBLIC.""_CERTIFICATE""(TEACHER_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:<EOL>insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?) [23505-224]] [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; SQL [insert into _certificate (course_id,date,number,serial,student_id,teacher_id,id) values (?,?,?,?,?,?,?)]; constraint [PUBLIC.UKSE2NJ0CMHNM0TN0QV3J09X9MJ_INDEX_C]]
+2025-01-25 19:00:25 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5836 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:00:25 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:00:25 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:00:29 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:00:29 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:00:30 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:00:31 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.075 seconds (process running for 6.821)
+2025-01-25 19:00:31 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:00:31 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 19:01:29 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:01:30 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:04:24 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 4824 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:04:24 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:04:24 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:04:28 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:04:28 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:04:29 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:04:30 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.156 seconds (process running for 6.961)
+2025-01-25 19:04:30 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:04:30 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 19:04:35 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:04:36 [http-nio-8080-exec-4] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:04:51 [http-nio-8080-exec-3] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 19:08:17 [http-nio-8080-exec-7] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 19:08:58 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5124 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:08:58 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:08:58 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:09:02 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:09:02 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:09:02 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:09:03 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.225 seconds (process running for 6.884)
+2025-01-25 19:09:04 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:09:04 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 19:09:06 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 19:09:42 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3424 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:09:42 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:09:42 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:09:46 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:09:46 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:09:47 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:09:48 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.529 seconds (process running for 7.426)
+2025-01-25 19:09:48 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:09:48 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-01-25 19:09:49 [http-nio-8080-exec-1] WARN  c.i.layout.renderer.RootRenderer - Element does not fit current area. 
+2025-01-25 19:10:26 [http-nio-8080-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:10:26 [http-nio-8080-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:10:26 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:10:42 [http-nio-8080-exec-9] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:10:43 [http-nio-8080-exec-10] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:10:53 [http-nio-8080-exec-8] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:10:53 [http-nio-8080-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:10:53 [http-nio-8080-exec-8] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:12:42 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3424 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:12:42 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:12:42 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:12:43 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: java.lang.TypeNotPresentException: Type uz.uychiitschool.system.web.core.entity.Certificate not present
+2025-01-25 19:12:43 [restartedMain] ERROR o.s.boot.SpringApplication - Application run failed
+java.lang.TypeNotPresentException: Type uz.uychiitschool.system.web.core.entity.Certificate not present
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:116)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:125)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.visitor.Reifier.reifyTypeArguments(Reifier.java:68)
+	at java.base/sun.reflect.generics.visitor.Reifier.visitClassTypeSignature(Reifier.java:138)
+	at java.base/sun.reflect.generics.tree.ClassTypeSignature.accept(ClassTypeSignature.java:49)
+	at java.base/sun.reflect.generics.repository.ClassRepository.computeSuperInterfaces(ClassRepository.java:117)
+	at java.base/sun.reflect.generics.repository.ClassRepository.getSuperInterfaces(ClassRepository.java:95)
+	at java.base/java.lang.Class.getGenericInterfaces(Class.java:1385)
+	at org.springframework.core.ResolvableType.getInterfaces(ResolvableType.java:517)
+	at org.springframework.core.ResolvableType.as(ResolvableType.java:465)
+	at org.springframework.data.util.TypeDiscoverer.getSuperTypeInformation(TypeDiscoverer.java:256)
+	at org.springframework.data.util.ClassTypeInformation.getSuperTypeInformation(ClassTypeInformation.java:36)
+	at org.springframework.data.util.TypeInformation.getRequiredSuperTypeInformation(TypeInformation.java:327)
+	at org.springframework.data.repository.core.support.DefaultRepositoryMetadata.<init>(DefaultRepositoryMetadata.java:55)
+	at org.springframework.data.repository.core.support.AbstractRepositoryMetadata.getMetadata(AbstractRepositoryMetadata.java:77)
+	at org.springframework.data.repository.config.RepositoryConfigurationExtensionSupport.getRepositoryConfigurations(RepositoryConfigurationExtensionSupport.java:92)
+	at org.springframework.data.repository.config.RepositoryConfigurationDelegate.registerRepositoriesIn(RepositoryConfigurationDelegate.java:168)
+	at org.springframework.boot.autoconfigure.data.AbstractRepositoryConfigurationSourceSupport.registerBeanDefinitions(AbstractRepositoryConfigurationSourceSupport.java:62)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.lambda$loadBeanDefinitionsFromRegistrars$1(ConfigurationClassBeanDefinitionReader.java:376)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:987)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsFromRegistrars(ConfigurationClassBeanDefinitionReader.java:375)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitionsForConfigurationClass(ConfigurationClassBeanDefinitionReader.java:148)
+	at org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader.loadBeanDefinitions(ConfigurationClassBeanDefinitionReader.java:120)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:429)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:290)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:349)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:118)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:789)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:607)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at uz.uychiitschool.system.SystemApplication.main(SystemApplication.java:15)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+Caused by: java.lang.ClassNotFoundException: uz.uychiitschool.system.web.core.entity.Certificate
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:578)
+	at java.base/java.lang.Class.forName(Class.java:557)
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:121)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:528)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:578)
+	at java.base/java.lang.Class.forName(Class.java:557)
+	at java.base/sun.reflect.generics.factory.CoreReflectionFactory.makeNamedType(CoreReflectionFactory.java:113)
+	... 39 common frames omitted
+2025-01-25 19:13:52 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 6092 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:13:52 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:13:52 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:13:56 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:13:56 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:13:57 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:13:58 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.312 seconds (process running for 7.159)
+2025-01-25 19:13:59 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:13:59 [RMI TCP Connection(2)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2025-01-25 19:14:02 [http-nio-8080-exec-2] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:14:02 [http-nio-8080-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:14:02 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:14:09 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:14:09 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:14:09 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:14:13 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:14:15 [http-nio-8080-exec-3] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:24:09 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5832 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:24:09 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:24:09 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:24:13 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:24:13 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:24:14 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:24:15 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.526 seconds (process running for 7.278)
+2025-01-25 19:24:15 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:24:15 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-01-25 19:24:15 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:24:15 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:24:15 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:26:53 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3476 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:26:53 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:26:53 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:26:57 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:26:57 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:26:58 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:26:59 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.852 seconds (process running for 6.727)
+2025-01-25 19:26:59 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:26:59 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 19:27:09 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:27:09 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:27:09 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:28:36 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5856 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:28:36 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:28:36 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:28:40 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:28:40 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:28:41 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:28:42 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.274 seconds (process running for 6.963)
+2025-01-25 19:28:43 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:28:43 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 6 ms
+2025-01-25 19:28:43 [http-nio-8080-exec-1] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 23503, SQLState: 23503
+2025-01-25 19:28:43 [http-nio-8080-exec-1] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"
+Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:
+delete from _student where id=? [23503-224]
+2025-01-25 19:28:43 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.DataIntegrityViolationException: could not execute statement [Нарушение ссылочной целостности: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"<EOL>Referential integrity constraint violation: "FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC.""_CERTIFICATE"" FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC.""_STUDENT""(ID) (1)"; SQL statement:<EOL>delete from _student where id=? [23503-224]] [delete from _student where id=?]; SQL [delete from _student where id=?]; constraint [FK6TUWTI2Y3G8MDE97CHF81DSFF: PUBLIC._CERTIFICATE FOREIGN KEY(STUDENT_ID) REFERENCES PUBLIC._STUDENT(ID) (1); SQL statement:<EOL>delete from _student where id=? [23503-224]]]
+2025-01-25 19:29:42 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 3968 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:29:42 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:29:42 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:29:46 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:29:46 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:29:47 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:29:48 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 6.853 seconds (process running for 7.504)
+2025-01-25 19:29:49 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:29:49 [RMI TCP Connection(3)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 7 ms
+2025-01-25 19:31:55 [http-nio-8080-exec-2] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:31:56 [http-nio-8080-exec-5] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico.]
+2025-01-25 19:32:22 [http-nio-8080-exec-7] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 19:33:24 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5124 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:33:24 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:33:24 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:33:28 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:33:28 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:33:28 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:33:29 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.966 seconds (process running for 6.802)
+2025-01-25 19:33:29 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:33:29 [RMI TCP Connection(4)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 19:34:02 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 19:34:23 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.tcp - RMI TCP Connection(1)-192.168.1.248: (port 56336) op = 82
+2025-01-25 19:34:23 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.tcp - RMI TCP Connection(1)-192.168.1.248: (port 56336) op = 80
+2025-01-25 19:34:23 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.misc - RMI TCP Connection(1)-192.168.1.248: getting input stream
+2025-01-25 19:34:23 [RMI TCP Connection(1)-192.168.1.248] DEBUG java.io.serialization - Builtin factory: null -> new: null
+2025-01-25 19:34:23 [RMI TCP Connection(1)-192.168.1.248] DEBUG sun.rmi.transport.misc - RMI TCP Connection(1)-192.168.1.248: call dispatcher
+2025-01-25 19:34:23 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5248 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:34:23 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:34:23 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:34:26 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:34:26 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:34:27 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:34:28 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 5.524 seconds (process running for 6.29)
+2025-01-25 19:34:28 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-01-25 19:34:28 [RMI TCP Connection(1)-192.168.1.248] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-01-25 19:34:33 [http-nio-8080-exec-1] WARN  o.s.w.s.m.m.a.ExceptionHandlerExceptionResolver - Resolved [org.springframework.dao.InvalidDataAccessApiUsageException: detached entity passed to persist: uz.uychiitschool.system.web.core.entity.Student]
+2025-01-25 19:40:06 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5248 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:40:06 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:40:06 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:40:07 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:40:07 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:40:08 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:40:08 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 2.503 seconds (process running for 346.718)
+2025-01-25 19:40:10 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5248 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:40:10 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:40:10 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:40:11 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:40:11 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:40:11 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:40:12 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.716 seconds (process running for 349.874)
+2025-01-25 19:43:19 [restartedMain] INFO  u.u.system.SystemApplication - Starting SystemApplication using Java 23.0.1 with PID 5248 (D:\system\target\classes started by admin in D:\system)
+2025-01-25 19:43:19 [restartedMain] DEBUG u.u.system.SystemApplication - Running with Spring Boot v3.3.6, Spring v6.1.15
+2025-01-25 19:43:19 [restartedMain] INFO  u.u.system.SystemApplication - No active profile set, falling back to 1 default profile: "default"
+2025-01-25 19:43:20 [restartedMain] DEBUG u.u.system.web.base.filter.JwtFilter - Filter 'jwtFilter' configured for use
+2025-01-25 19:43:20 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2025-01-25 19:43:20 [restartedMain] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2025-01-25 19:43:21 [restartedMain] INFO  u.u.system.SystemApplication - Started SystemApplication in 1.873 seconds (process running for 538.968)

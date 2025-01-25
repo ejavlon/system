@@ -7,7 +7,8 @@ import uz.uychiitschool.system.web.base.entity.BaseEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(

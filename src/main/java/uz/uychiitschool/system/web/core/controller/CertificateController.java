@@ -33,10 +33,24 @@ public class CertificateController {
                     )
             }
     )
-    @PostMapping(value = "/addTextAndConvertToPdf", produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<?> addTextAndConvertToPdf(@RequestParam String text) {
+//    @PostMapping(value = "/addTextAndConvertToPdf", produces = MediaType.APPLICATION_PDF_VALUE)
+//    public ResponseEntity<?> addTextAndConvertToPdf(@RequestParam String text) {
+//        try {
+//            byte[] resource = service.createPdfFromImage(text);
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.setContentType(MediaType.APPLICATION_PDF);
+//            headers.setContentDispositionFormData("attachment", "certificate.pdf"); // Yuklash uchun
+//
+//            return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+//        } catch (Exception e) {
+//            return ResponseEntity.status(500).body("Xatolik: " + e.getMessage());
+//        }
+//    }
+
+    @GetMapping(value = "/getCertificateWithPdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<?> getCertificateWithPdf(@PathVariable  UUID id) {
         try {
-            byte[] resource = service.createPdfFromImage(text);
+            byte[] resource = service.createPdfFromImage(id);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
             headers.setContentDispositionFormData("attachment", "certificate.pdf"); // Yuklash uchun
@@ -46,6 +60,8 @@ public class CertificateController {
             return ResponseEntity.status(500).body("Xatolik: " + e.getMessage());
         }
     }
+
+
 
     @GetMapping
     public ResponseEntity<?> getAllCertificates(@RequestParam(required = false) Integer page,

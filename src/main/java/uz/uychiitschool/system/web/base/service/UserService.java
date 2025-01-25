@@ -50,8 +50,9 @@ public class UserService {
     }
 
     public ResponseApi<User> signUp(SignUpDto userDto) {
-        findUserByIdOrUsernameOrThrow(null,userDto.getUsername());
-
+        if (userRepository.existsByUsername(userDto.getUsername())){
+            throw new RuntimeException("Username exist");
+        }
         var user = createOrUpdateUser(userDto, null);
         user = userRepository.save(user);
 
@@ -101,7 +102,7 @@ public class UserService {
     }
 
     public User createUser(SignUpDto userDto) {
-        Gender gender = Gender.fromString(userDto.getGender());
+        Gender gender = Gender.fromString(userDto.getGender().toUpperCase());
         return User.builder()
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())

@@ -16,7 +16,7 @@ public class QrCodeService {
 
     public BufferedImage addQrCodeToImage(String text, BufferedImage image) throws Exception {
         // QR kodni yaratish
-        final int qrSize = 150;  // QR kodning o'lchami
+        final int qrSize = 200;  // QR kodning o'lchami
         Map<EncodeHintType, Object> hints = new HashMap<>();
         hints.put(EncodeHintType.MARGIN, 1);  // QR kod chetini sozlash
         BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, qrSize, qrSize, hints);
@@ -31,8 +31,8 @@ public class QrCodeService {
 
         // QR kodni original rasmga joylashtirish
         Graphics2D graphics = image.createGraphics();
-        int x = 250;  // QR kodni joylashtirish uchun x koordinatasi
-        int y = 250;  // QR kodni joylashtirish uchun y koordinatasi
+        int x = 850;  // QR kodni joylashtirish uchun x koordinatasi
+        int y = 1000;  // QR kodni joylashtirish uchun y koordinatasi
         graphics.drawImage(qrImage, x, y, null);
         graphics.dispose();
 

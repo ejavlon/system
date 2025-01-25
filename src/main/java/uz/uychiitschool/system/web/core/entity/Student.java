@@ -1,5 +1,6 @@
 package uz.uychiitschool.system.web.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -7,12 +8,14 @@ import uz.uychiitschool.system.web.base.entity.BaseEntity;
 import uz.uychiitschool.system.web.base.enums.Gender;
 
 import java.time.LocalDate;
+import java.util.AbstractCollection;
 import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "_student")
@@ -50,6 +53,10 @@ public class Student extends BaseEntity {
             joinColumns = @JoinColumn(name = "student_id"),
             inverseJoinColumns = @JoinColumn(name = "group_id")
     )
+    @JsonIgnore
     List<Group> groups = new ArrayList<>();
 
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    List<Certificate> certificates;
 }

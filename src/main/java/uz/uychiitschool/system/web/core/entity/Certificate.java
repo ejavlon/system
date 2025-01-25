@@ -10,7 +10,8 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Builder
 @Entity
 @Table(name = "_certificate")
@@ -28,12 +29,15 @@ public class Certificate {
 
     LocalDateTime date;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "course_id")  // Sertifikatlar ko'plab kurslarga bog'lanadi
     Course course;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id")
     Student student;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "teacher_id")
     User teacher;
 }

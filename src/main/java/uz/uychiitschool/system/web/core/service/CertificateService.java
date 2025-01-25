@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.base.entity.User;
 import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
@@ -29,7 +30,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.UUID;
 
@@ -68,6 +71,7 @@ public class CertificateService {
 
     public ResponseApi<Certificate> create(CertificateDto certificateDto){
         Certificate certificate = createOrUpdateCertificate(certificateDto, null);
+        certificate = repository.save(certificate);
         return ResponseApi.createResponse(certificate, "Certificate successfully created", true);
     }
 
@@ -83,23 +87,23 @@ public class CertificateService {
         return ResponseApi.createResponse(certificate, "Certificate successfully deleted", true);
     }
 
+    @Transactional
     public Certificate createCertificate(CertificateDto certificateDto){
         if (certificateDto.getDate() != null && certificateDto.getDate().isAfter(LocalDateTime.now())) {
             throw new RuntimeException("Certificate date is after now");
         }
 
         LocalDateTime date = certificateDto.getDate() != null ? certificateDto.getDate() : LocalDateTime.now();
-
         Course course = courseService.findCourseByIdOrThrow(certificateDto.getCourseId());
         User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
         Student student = studentService.findStudentByIdOrThrow(certificateDto.getStudentId());
-
+        String uuid = UUID.randomUUID().toString();
         return Certificate.builder()
                 .date(date)
                 .course(course)
                 .teacher(teacher)
                 .student(student)
-                .serial(UUID.randomUUID().toString().toUpperCase().substring(0, 2))
+                .serial(uuid.substring(0, uuid.indexOf("-")).replace("[^a-zA-Z]", "").substring(0,2).toUpperCase())
                 .number(String.valueOf(repository.count() + 10000))
                 .build();
     }
@@ -135,9 +139,10 @@ public class CertificateService {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Certificate not found"));
     }
 
-    public byte [] createPdfFromImage(String text) throws Exception {
-        BufferedImage image = addTextToImage(text);
-        image = qrCodeService.addQrCodeToImage("https://ejavlon.uz",image);
+    public byte [] createPdfFromImage(UUID id) throws Exception {
+        Certificate certificate = findCertificateByIdOrThrow(id);
+        BufferedImage image = addTextToImage(certificate);
+        image = qrCodeService.addQrCodeToImage(String.format("https://t.me/uychi_it_school_bot/start=%s", certificate.getId()),image);
 
         // Rasmdan byte massivini olish
         ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
@@ -187,16 +192,51 @@ public class CertificateService {
         return pdfOutputStream.toByteArray();
     }
 
-    public BufferedImage addTextToImage(String text) throws IOException {
+    public BufferedImage addTextToImage(Certificate certificate) throws IOException {
         // Rasmdan BufferedImage yaratish
-        String pdfPath = "/home/javlon/IdeaProjects/system/data/images/c1.png";
-        BufferedImage image = ImageIO.read(new File(pdfPath));
+        Student student = certificate.getStudent();
+        String os = System.getProperty("os.name").toLowerCase();
+        String imagePath = "/home/javlon/IdeaProjects/system/data/images/c1.png";
+
+        if (os.contains("win")){
+            imagePath = "D:\\system\\data\\images\\c1.png";
+        }
+
+        BufferedImage image = ImageIO.read(new File(imagePath));
 
         // Graphics2D yordamida yozuv qo'shish
+        String fontPath = "/home/javlon/IdeaProjects/system/data/fonts/Montserrat-Medium.ttf";
+        if (os.contains("win")) {
+            fontPath = "D:\\system\\data\\fonts\\Montserrat-Medium.ttf";
+            System.out.println("windows");
+        }
+
+        Font customFont = new Font("Arial", Font.BOLD, 50);
+        Font customFont2 = new Font("Arial", Font.BOLD, 50);
+
+        try {
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
+            customFont = customFont.deriveFont(60f); // Font o'lchamini belgilash
+
+            customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
+            customFont2 = customFont.deriveFont(30f); // Font o'lchamini belgilash
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         Graphics2D graphics = image.createGraphics();
-        graphics.setFont(new Font("Arial", Font.BOLD, 50));
+//        graphics.setFont(new Font("Arial", Font.BOLD, 50));
+        graphics.setFont(customFont);
         graphics.setColor(Color.BLACK);
-        graphics.drawString(text, 50, 50); // X va Y koordinatalari
+        graphics.drawString(String.format("%s %s", student.getLastName().toUpperCase(), student.getFirstName().toUpperCase()), 100, 750); // X va Y koordinatalari
+
+        String date = certificate.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String serialAndNumber = String.format("%s %s", certificate.getSerial(),certificate.getNumber());
+        Graphics2D graphics2 = image.createGraphics();
+        graphics2.setFont(customFont2);
+        graphics2.setColor(Color.BLACK);
+        graphics2.drawString(String.format("%s", date), 1430, 1175);
+        graphics2.drawString(String.format("%s", serialAndNumber), 1430, 1065);
 
         graphics.dispose();
         return image;
