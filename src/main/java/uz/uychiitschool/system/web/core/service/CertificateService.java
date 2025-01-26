@@ -142,57 +142,121 @@ public class CertificateService {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Certificate not found"));
     }
 
-    public byte [] createPdfFromImage(UUID id) throws Exception {
-        Certificate certificate = findCertificateByIdOrThrow(id);
-        BufferedImage image = addTextToImage(certificate);
-        image = qrCodeService.addQrCodeToImage(String.format("https://t.me/uychi_it_school_bot/start=%s", certificate.getId()),image);
+    public byte [] createPdfFromImage(UUID id)  {
+        try {
+            Certificate certificate = findCertificateByIdOrThrow(id);
+            BufferedImage image = addTextToImage(certificate);
+            image = qrCodeService.addQrCodeToImage(String.format("https://t.me/uychi_it_school_bot?start=%s", certificate.getId()),image);
 
-        // Rasmdan byte massivini olish
-        ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
-        ImageIO.write(image, "png", imageOutputStream);
-        byte[] imageBytes = imageOutputStream.toByteArray();
+            // Rasmdan byte massivini olish
+            ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", imageOutputStream);
+            byte[] imageBytes = imageOutputStream.toByteArray();
 
-        // PDF faylni vaqtinchalik oqimda yaratish
-        ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
-        PdfWriter writer = new PdfWriter(pdfOutputStream);
-        PdfDocument pdfDoc = new PdfDocument(writer);
+            // PDF faylni vaqtinchalik oqimda yaratish
+            ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
+            PdfWriter writer = new PdfWriter(pdfOutputStream);
+            PdfDocument pdfDoc = new PdfDocument(writer);
 
-        // Sahifa formatini o'rnatish (A4, kerakli formatda)
-        pdfDoc.setDefaultPageSize(PageSize.A4.rotate()); // Yoki `PageSize.A4` agar portret bo'lsa
+            // Sahifa formatini o'rnatish (A4, kerakli formatda)
+            pdfDoc.setDefaultPageSize(PageSize.A4.rotate()); // Yoki `PageSize.A4` agar portret bo'lsa
 
-        // Dokument yaratish
-        Document document = new Document(pdfDoc);
+            // Dokument yaratish
+            Document document = new Document(pdfDoc);
 
-        // PDF sahifasining o'lchamlarini olish
-        float pdfWidth = pdfDoc.getDefaultPageSize().getWidth();
-        float pdfHeight = pdfDoc.getDefaultPageSize().getHeight();
+            // PDF sahifasining o'lchamlarini olish
+            float pdfWidth = pdfDoc.getDefaultPageSize().getWidth();
+            float pdfHeight = pdfDoc.getDefaultPageSize().getHeight();
 
-        // Rasmni PDF sahifasiga qo'shish
-        ImageData imageData = ImageDataFactory.create(imageBytes);
-        Image pdfImage = new Image(imageData);
+            // Rasmni PDF sahifasiga qo'shish
+            ImageData imageData = ImageDataFactory.create(imageBytes);
+            Image pdfImage = new Image(imageData);
 
-        // Rasmning o'lchamlarini moslashtirish
-        float aspectRatio = image.getWidth() / (float) image.getHeight(); // Rasmning nisbatini hisoblash
-        float scaledWidth = pdfWidth;
-        float scaledHeight = scaledWidth / aspectRatio;
+            // Rasmning o'lchamlarini moslashtirish
+            float aspectRatio = image.getWidth() / (float) image.getHeight(); // Rasmning nisbatini hisoblash
+            float scaledWidth = pdfWidth;
+            float scaledHeight = scaledWidth / aspectRatio;
 
-        // Agar balandlik sahifaning balandligidan katta bo'lsa, balandlikka moslashtirish
-        if (scaledHeight > pdfHeight) {
-            scaledHeight = pdfHeight;
-            scaledWidth = scaledHeight * aspectRatio;
+            // Agar balandlik sahifaning balandligidan katta bo'lsa, balandlikka moslashtirish
+            if (scaledHeight > pdfHeight) {
+                scaledHeight = pdfHeight;
+                scaledWidth = scaledHeight * aspectRatio;
+            }
+
+            // Rasmni moslashtirish
+            pdfImage.scaleToFit(scaledWidth, scaledHeight);
+
+            // Rasmni hujjatga qo'shish
+            document.add(pdfImage);
+
+            // Hujjatni yopish
+            document.close();
+
+            // PDF ma'lumotini byte[] formatida olish
+            return pdfOutputStream.toByteArray();
+        }catch (Exception e){
+            throw new DataNotFoundException("Certificate not found or pdf not created");
         }
+    }
 
-        // Rasmni moslashtirish
-        pdfImage.scaleToFit(scaledWidth, scaledHeight);
+    public byte [] createPdfFromImageByIdOrCertificate(UUID id, Certificate certificate)  {
+        try {
+            if (certificate == null){
+                certificate = findCertificateByIdOrThrow(id);
+            }
 
-        // Rasmni hujjatga qo'shish
-        document.add(pdfImage);
+            BufferedImage image = addTextToImage(certificate);
+            image = qrCodeService.addQrCodeToImage(String.format("https://t.me/uychi_it_school_bot?start=%s", certificate.getId()),image);
 
-        // Hujjatni yopish
-        document.close();
+            // Rasmdan byte massivini olish
+            ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "png", imageOutputStream);
+            byte[] imageBytes = imageOutputStream.toByteArray();
 
-        // PDF ma'lumotini byte[] formatida olish
-        return pdfOutputStream.toByteArray();
+            // PDF faylni vaqtinchalik oqimda yaratish
+            ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
+            PdfWriter writer = new PdfWriter(pdfOutputStream);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+
+            // Sahifa formatini o'rnatish (A4, kerakli formatda)
+            pdfDoc.setDefaultPageSize(PageSize.A4.rotate()); // Yoki `PageSize.A4` agar portret bo'lsa
+
+            // Dokument yaratish
+            Document document = new Document(pdfDoc);
+
+            // PDF sahifasining o'lchamlarini olish
+            float pdfWidth = pdfDoc.getDefaultPageSize().getWidth();
+            float pdfHeight = pdfDoc.getDefaultPageSize().getHeight();
+
+            // Rasmni PDF sahifasiga qo'shish
+            ImageData imageData = ImageDataFactory.create(imageBytes);
+            Image pdfImage = new Image(imageData);
+
+            // Rasmning o'lchamlarini moslashtirish
+            float aspectRatio = image.getWidth() / (float) image.getHeight(); // Rasmning nisbatini hisoblash
+            float scaledWidth = pdfWidth;
+            float scaledHeight = scaledWidth / aspectRatio;
+
+            // Agar balandlik sahifaning balandligidan katta bo'lsa, balandlikka moslashtirish
+            if (scaledHeight > pdfHeight) {
+                scaledHeight = pdfHeight;
+                scaledWidth = scaledHeight * aspectRatio;
+            }
+
+            // Rasmni moslashtirish
+            pdfImage.scaleToFit(scaledWidth, scaledHeight);
+
+            // Rasmni hujjatga qo'shish
+            document.add(pdfImage);
+
+            // Hujjatni yopish
+            document.close();
+
+            // PDF ma'lumotini byte[] formatida olish
+            return pdfOutputStream.toByteArray();
+        }catch (Exception e){
+            throw new DataNotFoundException("Certificate not found or pdf not created");
+        }
     }
 
     public BufferedImage addTextToImage(Certificate certificate) throws IOException {

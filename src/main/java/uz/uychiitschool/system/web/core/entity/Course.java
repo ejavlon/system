@@ -21,7 +21,7 @@ public class Course extends BaseEntity {
     @Column(length = 50, unique = true, nullable = false)
     String name;
 
-    @Column(columnDefinition = "DOUBLE DEFAULT 0.0")
+    @Column
     Double price;
 
     Integer duration;

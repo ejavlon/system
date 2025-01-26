@@ -4,18 +4,20 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendDocument;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import uz.uychiitschool.system.bot.config.BotConfig;
 
 @Component
-public class Bot2 extends TelegramWebhookBot {
+public class ItSchoolBot extends TelegramWebhookBot {
     private final BotConfig botConfig;
 
-    public Bot2(BotConfig botConfig) {
+    public ItSchoolBot(BotConfig botConfig) {
         super(botConfig.getToken());
         this.botConfig = botConfig;
     }
@@ -61,5 +63,14 @@ public class Bot2 extends TelegramWebhookBot {
         sendMessage.setChatId(chatId);
         sendMessage.setText(message);
         execute(sendMessage);
+    }
+
+    @SneakyThrows
+    public void sendDocument(String chatId, String caption, InputFile inputFile){
+        SendDocument sendDocument = new SendDocument();
+        sendDocument.setChatId(chatId);
+        sendDocument.setCaption(caption);
+        sendDocument.setDocument(inputFile);
+        execute(sendDocument);
     }
 }
