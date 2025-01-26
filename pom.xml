@@ -5,7 +5,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.6</version>
+<!--		<version>3.3.6</version>-->
+		<version>3.1.5</version>
 		<relativePath/>
 	</parent>
 	<groupId>uz.uychiitschool</groupId>
@@ -86,28 +87,14 @@
 		</dependency>
 
 <!--		<dependency>-->
-<!--			<groupId>org.postgresql</groupId>-->
-<!--			<artifactId>postgresql</artifactId>-->
-<!--			<version>42.7.4</version>-->
+<!--			<groupId>com.h2database</groupId>-->
+<!--			<artifactId>h2</artifactId>-->
+<!--			<scope>runtime</scope>-->
 <!--		</dependency>-->
-
-<!--		<dependency>-->
-<!--			<groupId>org.mapstruct</groupId>-->
-<!--			<artifactId>mapstruct</artifactId>-->
-<!--			<version>1.6.3</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.mapstruct</groupId>-->
-<!--			<artifactId>mapstruct-processor</artifactId>-->
-<!--			<version>1.6.3</version>-->
-<!--			<scope>provided</scope>-->
-<!--		</dependency>-->
-
-
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -142,6 +129,18 @@
 			<version>3.5.3</version>
 		</dependency>
 
+<!--		<dependency>-->
+<!--			<groupId>org.telegram</groupId>-->
+<!--			<artifactId>telegrambots-spring-boot-starter</artifactId>-->
+<!--			<version>6.8.0</version>-->
+<!--		</dependency>-->
+
+		<!-- https://mvnrepository.com/artifact/org.telegram/telegrambots-spring-boot-starter -->
+		<dependency>
+			<groupId>org.telegram</groupId>
+			<artifactId>telegrambots-spring-boot-starter</artifactId>
+			<version>6.6.0</version>
+		</dependency>
 
 
 	</dependencies>

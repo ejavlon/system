@@ -57,6 +57,7 @@ public class Student extends BaseEntity {
     List<Group> groups = new ArrayList<>();
 
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    List<Certificate> certificates;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    List<Certificate> certificates;
 }

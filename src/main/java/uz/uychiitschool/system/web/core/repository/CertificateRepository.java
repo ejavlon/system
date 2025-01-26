@@ -11,6 +11,4 @@ import java.util.UUID;
 @Repository
 public interface CertificateRepository extends JpaRepository<Certificate, UUID> {
 
-//    @Query(nativeQuery = true, value = "select * from ")
-//    Long getCertificateCount();
 }

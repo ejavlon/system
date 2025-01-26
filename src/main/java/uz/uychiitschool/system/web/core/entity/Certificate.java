@@ -14,30 +14,31 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "_certificate")
+@Table(name = "_certificate",
+    uniqueConstraints = {@UniqueConstraint(columnNames = {"course_id", "student_id"})})
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Certificate {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    UUID id;
+    public class Certificate {
+        @Id
+        @GeneratedValue(strategy = GenerationType.UUID)
+        UUID id;
 
-    @Column(length = 10)
-    String serial;
+        @Column(length = 10)
+        String serial;
 
-    @Column(length = 20)
-    String number;
+        @Column(length = 20)
+        String number;
 
-    LocalDateTime date;
+        LocalDateTime date;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id")  // Sertifikatlar ko'plab kurslarga bog'lanadi
-    Course course;
+        @ManyToOne
+        @JoinColumn(name = "course_id")
+        Course course;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id")
-    Student student;
+        @ManyToOne(optional = false)
+        @JoinColumn(name = "student_id", nullable = false)
+        Student student;
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    User teacher;
-}
+        @ManyToOne
+        @JoinColumn(name = "teacher_id")
+        User teacher;
+    }

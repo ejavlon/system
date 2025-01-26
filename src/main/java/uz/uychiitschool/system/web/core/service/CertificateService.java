@@ -45,15 +45,7 @@ public class CertificateService {
     private final UserService userService;
     private final StudentService studentService;
     private final QrCodeService qrCodeService;
-
-    public Certificate createCertificate() {
-        Certificate certificate = new Certificate();
-        certificate.setId(UUID.randomUUID()); // Noyob UUID yaratish
-        certificate.setSerial("SER-" + UUID.randomUUID().toString().substring(0, 2)); // Seriya yaratish
-        certificate.setNumber("NUM-" + UUID.randomUUID().toString().substring(0, 8)); // Raqam yaratish
-
-        return repository.save(certificate);
-    }
+//    private final CertificateService selfService;
 
     public ResponseApi<Page<Certificate>> getAllCertificates(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.sort(Certificate.class)
@@ -69,12 +61,15 @@ public class CertificateService {
         return ResponseApi.createResponse(certificate, "Certificate by id", true);
     }
 
+    @Transactional
     public ResponseApi<Certificate> create(CertificateDto certificateDto){
         Certificate certificate = createOrUpdateCertificate(certificateDto, null);
         certificate = repository.save(certificate);
         return ResponseApi.createResponse(certificate, "Certificate successfully created", true);
     }
 
+
+    @Transactional
     public ResponseApi<Certificate> update(UUID id, CertificateDto certificateDto) {
         Certificate existingCertificate = findCertificateByIdOrThrow(id);
         existingCertificate = createOrUpdateCertificate(certificateDto, existingCertificate);
@@ -95,19 +90,27 @@ public class CertificateService {
 
         LocalDateTime date = certificateDto.getDate() != null ? certificateDto.getDate() : LocalDateTime.now();
         Course course = courseService.findCourseByIdOrThrow(certificateDto.getCourseId());
-        User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
+
         Student student = studentService.findStudentByIdOrThrow(certificateDto.getStudentId());
+
+        boolean anyMatch = student.getCertificates().stream().anyMatch(certificate -> certificate.getCourse().equals(course));
+        if (anyMatch) {
+            throw new RuntimeException("Certificate already exists");
+        }
+
+        User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
         String uuid = UUID.randomUUID().toString();
         return Certificate.builder()
                 .date(date)
                 .course(course)
                 .teacher(teacher)
                 .student(student)
-                .serial(uuid.substring(0, uuid.indexOf("-")).replace("[^a-zA-Z]", "").substring(0,2).toUpperCase())
+                .serial(uuid.substring(0, uuid.indexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0,2).toUpperCase())
                 .number(String.valueOf(repository.count() + 10000))
                 .build();
     }
 
+    @Transactional
     public Certificate createOrUpdateCertificate(CertificateDto certificateDto, Certificate exsistingCertificate) {
         if (exsistingCertificate == null){
             return createCertificate(certificateDto);
