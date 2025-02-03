@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.core.entity.Passport;
@@ -15,6 +16,7 @@ import uz.uychiitschool.system.web.core.service.PassportService;
 public class PassportController {
     private final PassportService service;
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping
     public ResponseEntity<?> getAllPassports(@RequestParam(required = false) Integer page,
                                              @RequestParam(required = false) Integer size) {
@@ -22,24 +24,28 @@ public class PassportController {
         return ResponseEntity.ok(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getAllPassports(@PathVariable Integer id) {
         ResponseApi<Passport> responseApi = service.getPassportById(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PostMapping
     public ResponseEntity<?> createPassport(@RequestBody Passport passport) {
         ResponseApi<Passport> responseApi = service.create(passport);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PutMapping("/{id}")
     public ResponseEntity<?> updatePassport(@PathVariable Integer id, @RequestBody Passport passport) {
         ResponseApi<Passport> responseApi = service.update(id, passport);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePassport(@PathVariable Integer id) {
         ResponseApi<Passport> responseApi = service.delete(id);

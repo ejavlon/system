@@ -18,10 +18,10 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
-@Table(name = "_student")
+@Table(name = "student")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Student extends BaseEntity {
-    @OneToOne(cascade = {CascadeType.ALL})
+    @OneToOne(cascade = {CascadeType.ALL}, orphanRemoval = true)
     Address address;
 
     @OneToOne(cascade = {CascadeType.ALL})

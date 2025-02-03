@@ -34,6 +34,7 @@ public class WebhookController {
     public void handleMessage(Update update){
         Message message = update.getMessage();
         User from = message.getFrom();
+        System.out.println("test");
         System.out.println("message.getText() = " + message.getText());
 
         if (message.hasText() && message.getText().startsWith("/start")){

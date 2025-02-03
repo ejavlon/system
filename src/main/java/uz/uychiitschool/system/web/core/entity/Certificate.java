@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @Builder
 @Entity
-@Table(name = "_certificate",
+@Table(name = "certificate",
     uniqueConstraints = {@UniqueConstraint(columnNames = {"course_id", "student_id"})})
 @FieldDefaults(level = AccessLevel.PRIVATE)
     public class Certificate {

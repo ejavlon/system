@@ -12,7 +12,7 @@ import uz.uychiitschool.system.web.base.entity.BaseEntity;
 @Builder
 @Entity
 @Table(
-        name = "_passport",
+        name = "passport",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = {"serial", "number"})
         }

@@ -12,7 +12,7 @@ import uz.uychiitschool.system.web.base.entity.BaseEntity;
 @Builder
 @Entity
 @Table(
-        name = "_address",
+        name = "address",
         uniqueConstraints = @UniqueConstraint(columnNames = {"regionName", "districtName", "streetName", "houseNumber"})
 )
 @FieldDefaults(level = AccessLevel.PRIVATE)

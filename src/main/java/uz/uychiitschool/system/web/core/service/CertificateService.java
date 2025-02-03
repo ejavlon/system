@@ -8,6 +8,7 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -30,10 +31,8 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,7 +44,7 @@ public class CertificateService {
     private final UserService userService;
     private final StudentService studentService;
     private final QrCodeService qrCodeService;
-//    private final CertificateService selfService;
+    private final Environment environment;
 
     public ResponseApi<Page<Certificate>> getAllCertificates(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.sort(Certificate.class)
@@ -65,7 +64,14 @@ public class CertificateService {
     public ResponseApi<Certificate> create(CertificateDto certificateDto){
         Certificate certificate = createOrUpdateCertificate(certificateDto, null);
         certificate = repository.save(certificate);
-        return ResponseApi.createResponse(certificate, "Certificate successfully created", true);
+
+        return ResponseApi.createResponse(
+                certificate,
+                String.format(
+                        "Certificate successfully created\nUrl: %s?start=%s",
+                        environment.getProperty("bot.url"),certificate.getId()
+                ),
+                true);
     }
 
 
@@ -100,13 +106,14 @@ public class CertificateService {
 
         User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
         String uuid = UUID.randomUUID().toString();
+        String serial = uuid.substring(0, uuid.lastIndexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0,2).toUpperCase();
         return Certificate.builder()
                 .date(date)
                 .course(course)
                 .teacher(teacher)
                 .student(student)
-                .serial(uuid.substring(0, uuid.indexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0,2).toUpperCase())
-                .number(String.valueOf(repository.count() + 10000))
+                .serial(serial)
+                .number(String.valueOf(repository.count() + 10001))
                 .build();
     }
 
@@ -142,63 +149,6 @@ public class CertificateService {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Certificate not found"));
     }
 
-    public byte [] createPdfFromImage(UUID id)  {
-        try {
-            Certificate certificate = findCertificateByIdOrThrow(id);
-            BufferedImage image = addTextToImage(certificate);
-            image = qrCodeService.addQrCodeToImage(String.format("https://t.me/uychi_it_school_bot?start=%s", certificate.getId()),image);
-
-            // Rasmdan byte massivini olish
-            ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
-            ImageIO.write(image, "png", imageOutputStream);
-            byte[] imageBytes = imageOutputStream.toByteArray();
-
-            // PDF faylni vaqtinchalik oqimda yaratish
-            ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
-            PdfWriter writer = new PdfWriter(pdfOutputStream);
-            PdfDocument pdfDoc = new PdfDocument(writer);
-
-            // Sahifa formatini o'rnatish (A4, kerakli formatda)
-            pdfDoc.setDefaultPageSize(PageSize.A4.rotate()); // Yoki `PageSize.A4` agar portret bo'lsa
-
-            // Dokument yaratish
-            Document document = new Document(pdfDoc);
-
-            // PDF sahifasining o'lchamlarini olish
-            float pdfWidth = pdfDoc.getDefaultPageSize().getWidth();
-            float pdfHeight = pdfDoc.getDefaultPageSize().getHeight();
-
-            // Rasmni PDF sahifasiga qo'shish
-            ImageData imageData = ImageDataFactory.create(imageBytes);
-            Image pdfImage = new Image(imageData);
-
-            // Rasmning o'lchamlarini moslashtirish
-            float aspectRatio = image.getWidth() / (float) image.getHeight(); // Rasmning nisbatini hisoblash
-            float scaledWidth = pdfWidth;
-            float scaledHeight = scaledWidth / aspectRatio;
-
-            // Agar balandlik sahifaning balandligidan katta bo'lsa, balandlikka moslashtirish
-            if (scaledHeight > pdfHeight) {
-                scaledHeight = pdfHeight;
-                scaledWidth = scaledHeight * aspectRatio;
-            }
-
-            // Rasmni moslashtirish
-            pdfImage.scaleToFit(scaledWidth, scaledHeight);
-
-            // Rasmni hujjatga qo'shish
-            document.add(pdfImage);
-
-            // Hujjatni yopish
-            document.close();
-
-            // PDF ma'lumotini byte[] formatida olish
-            return pdfOutputStream.toByteArray();
-        }catch (Exception e){
-            throw new DataNotFoundException("Certificate not found or pdf not created");
-        }
-    }
-
     public byte [] createPdfFromImageByIdOrCertificate(UUID id, Certificate certificate)  {
         try {
             if (certificate == null){
@@ -206,7 +156,12 @@ public class CertificateService {
             }
 
             BufferedImage image = addTextToImage(certificate);
-            image = qrCodeService.addQrCodeToImage(String.format("https://t.me/uychi_it_school_bot?start=%s", certificate.getId()),image);
+            image = qrCodeService.addQrCodeToImage(
+                    String.format(
+                            "%s?start=%s", environment.getProperty("bot.url"), certificate.getId()
+                    ),
+                    image
+            );
 
             // Rasmdan byte massivini olish
             ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();

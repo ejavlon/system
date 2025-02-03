@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @Builder
 @Entity
-@Table(name = "_users")
+@Table(name = "users")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User extends BaseEntity implements UserDetails, Serializable {
     @Column(name = "first_name",length = 50)
@@ -33,9 +33,11 @@ public class User extends BaseEntity implements UserDetails, Serializable {
     String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 10)
     Gender gender;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 10)
     Role role;
 
     @Override

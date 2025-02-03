@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -35,7 +34,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) {
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-//                        .requestMatchers(new AntPathRequestMatcher("/h2-console/**")).permitAll()  // H2 konsoliga kirish ruxsatini berish
                         .requestMatchers(getPermitAllUrls()).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -46,14 +44,13 @@ public class SecurityConfig {
                 .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
                 .cors(Customizer.withDefaults());
 
-        http.headers().frameOptions().disable();
+//        http.headers().frameOptions().disable();
 
         return http.build();
     }
 
     private String[] getPermitAllUrls() {
         return new String[]{
-                "/**",
                 "/api/v1/auth/**",
                 "/api/v1/**",
                 "/v2/api-docs",

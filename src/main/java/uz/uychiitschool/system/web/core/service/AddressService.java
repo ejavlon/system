@@ -95,6 +95,10 @@ public class AddressService {
         if (existingAddress == null) {
             return createAddress(studentDto);
         }
+        if (studentDto.getRegionName() == null && studentDto.getDistrictName() == null
+            && studentDto.getStreetName() == null && studentDto.getHouseNumber() == null) {
+            return null;
+        }
         Address newAddress = createAddress(studentDto);
         existingAddress = updateOrCreateAddress(newAddress, existingAddress);
         return existingAddress;
@@ -102,14 +106,5 @@ public class AddressService {
 
     public Address findAddressById(int id) {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Address not found"));
-    }
-
-    public Address findByFullField(Address address) {
-        return repository.findByRegionNameAndDistrictNameAndStreetNameAndHouseNumber(
-                address.getRegionName(),
-                address.getDistrictName(),
-                address.getStreetName(),
-                address.getHouseNumber()
-        ).orElse(null);
     }
 }

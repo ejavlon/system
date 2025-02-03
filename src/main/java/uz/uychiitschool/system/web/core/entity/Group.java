@@ -33,6 +33,7 @@ public class Group extends BaseEntity {
     LocalDateTime endDate;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 20, nullable = false)
     GroupStatus status;
 
     @ManyToOne

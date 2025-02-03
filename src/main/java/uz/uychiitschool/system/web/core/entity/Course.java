@@ -15,7 +15,7 @@ import java.util.List;
 @Setter
 @Builder
 @Entity
-@Table(name = "_course")
+@Table(name = "course")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Course extends BaseEntity {
     @Column(length = 50, unique = true, nullable = false)

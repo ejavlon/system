@@ -18,6 +18,7 @@ import uz.uychiitschool.system.web.core.service.GroupService;
 public class GroupController {
     private final GroupService service;
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping
     public ResponseEntity<?> getAllGroups(@RequestParam(required = false) Integer page,
                                           @RequestParam(required = false) Integer size) {
@@ -25,39 +26,42 @@ public class GroupController {
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getGroupById(@PathVariable int id) {
         ResponseApi<Group> responseApi = service.getGroupById(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PostMapping
     public ResponseEntity<?> createGroup(@Valid @RequestBody GroupDto groupDto) {
         ResponseApi<Group> responseApi = service.create(groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PostMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createGroupSuperAdmin(@Valid @RequestBody GroupDto groupDto) {
         ResponseApi<Group> responseApi = service.createGroupSuperAdmin(groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateGroupById(@PathVariable int id, @Valid @RequestBody GroupDto groupDto) {
         ResponseApi<Group> responseApi = service.updateGroupById(id, groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
-
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PutMapping("/admin/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateGroupByIdWithSuperAdmin(@PathVariable int id, @Valid @RequestBody GroupDto groupDto) {
         ResponseApi<Group> responseApi = service.updateGroupByIdWithSuperAdmin(id, groupDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteGroupById(@PathVariable int id) {
         ResponseApi<Group> responseApi = service.deleteGroupById(id);

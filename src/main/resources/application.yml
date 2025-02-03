@@ -25,10 +25,11 @@ spring:
       ddl-auto: update
     show-sql: true
     open-in-view: false
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+#    database-platform: org.hibernate.dialect.H2Dialect
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
   sql:
     init:
       mode: always
@@ -54,12 +55,13 @@ logging:
 
 token:
   secret:
-    key: 0193ab71-3a2d-7232-8b5a-077b605696ae-0193ab71-d109-73ae-9c70-bbb1206dd76a
+    key: 0193ab713a2d72328b5a077b605696ae0193ab71d10973ae9c70bbb1206dd76a
 
 bot:
   username: uychi_it_school_bot
   token: 8055808761:AAFfsf18UmSYdEHIIJ1yZy5NLzDMuEGDI-w
-  webhook-path: https://db63-95-214-210-175.ngrok-free.app/api/v1/webhook
+  webhook-path: https://cc89-213-230-87-9.ngrok-free.app/api/v1/webhook
   set-webhook-url: https://api.telegram.org/bot%s/setWebhook?url=%s
+  url: https://t.me/uychi_it_school_bot
 
 zonaid: Asia/Tashkent

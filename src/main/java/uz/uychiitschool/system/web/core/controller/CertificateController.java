@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import uz.uychiitschool.system.web.base.dto.ResponseApi;
 import uz.uychiitschool.system.web.core.dto.CertificateDto;
@@ -33,7 +34,7 @@ public class CertificateController {
                     )
             }
     )
-
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping(value = "/getCertificateWithPdf/{id}", produces = MediaType.APPLICATION_PDF_VALUE)
     public ResponseEntity<?> getCertificateWithPdf(@PathVariable  UUID id) {
         try {
@@ -49,7 +50,7 @@ public class CertificateController {
     }
 
 
-
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping
     public ResponseEntity<?> getAllCertificates(@RequestParam(required = false) Integer page,
                                            @RequestParam(required = false) Integer size) {
@@ -57,24 +58,28 @@ public class CertificateController {
         return ResponseEntity.ok(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @GetMapping("/{id}")
     public ResponseEntity<?> getCertificateById(@PathVariable UUID id) {
         ResponseApi<Certificate> responseApi = service.getCertificateById(id);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PostMapping
     public ResponseEntity<?> addCertificate(@RequestBody CertificateDto certificateDto) {
         ResponseApi<Certificate> responseApi = service.create(certificateDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.CREATED : HttpStatus.INTERNAL_SERVER_ERROR).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @PutMapping("/{id}")
     public ResponseEntity<?> updateCertificate(@PathVariable UUID id, @RequestBody CertificateDto certificateDto) {
         ResponseApi<Certificate> responseApi = service.update(id, certificateDto);
         return ResponseEntity.status(responseApi.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND).body(responseApi);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'TEACHER')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCertificate(@PathVariable UUID id) {
         ResponseApi<Certificate> responseApi = service.deleteCertificateById(id);

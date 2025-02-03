@@ -46,10 +46,6 @@ public class StudentService {
     @Transactional
     public ResponseApi<Student> createStudent(StudentDto studentDto) {
         Address newAddress = addressService.updateOrCreateAddress(studentDto, null);
-        Address findFullFieldAddress = addressService.findByFullField(newAddress);
-
-        if (findFullFieldAddress != null)
-            newAddress.setId(findFullFieldAddress.getId());
 
         Passport passport = passportService.updateOrCreatePassport(studentDto,null);
 
@@ -67,10 +63,6 @@ public class StudentService {
 
         Address oldAddress = student.getAddress();
         Address newAddress = addressService.updateOrCreateAddress(studentDto, oldAddress);
-
-        Address findByFullFieldAddress = addressService.findByFullField(newAddress);
-        if (findByFullFieldAddress != null)
-            newAddress.setId(findByFullFieldAddress.getId());
 
         Passport oldPassport = student.getPassport();
         Passport newPassport = passportService.updateOrCreatePassport(studentDto,oldPassport);
