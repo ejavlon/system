@@ -38,4 +38,29 @@ public class QrCodeService {
 
         return image;
     }
+
+    public BufferedImage addQrCodeToImage2(String text, BufferedImage image) throws Exception {
+        // QR kodni yaratish
+        final int qrSize = 400;  // QR kodning o'lchami
+        Map<EncodeHintType, Object> hints = new HashMap<>();
+        hints.put(EncodeHintType.MARGIN, 1);  // QR kod chetini sozlash
+        BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, qrSize, qrSize, hints);
+
+        // QR kodni BufferedImage formatida yaratish
+        BufferedImage qrImage = new BufferedImage(qrSize, qrSize, BufferedImage.TYPE_INT_RGB);
+        for (int i = 0; i < qrSize; i++) {
+            for (int j = 0; j < qrSize; j++) {
+                qrImage.setRGB(i, j, matrix.get(i, j) ? Color.BLACK.getRGB() : Color.WHITE.getRGB());
+            }
+        }
+
+        // QR kodni original rasmga joylashtirish
+        Graphics2D graphics = image.createGraphics();
+        int x = 2950;  // QR kodni joylashtirish uchun x koordinatasi
+        int y = 80;  // QR kodni joylashtirish uchun y koordinatasi
+        graphics.drawImage(qrImage, x, y, null);
+        graphics.dispose();
+
+        return image;
+    }
 }

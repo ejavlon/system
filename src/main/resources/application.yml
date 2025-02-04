@@ -6,6 +6,8 @@ server:
         secure: false
 
 spring:
+  cache:
+    type: none
   application:
     name: UYCHI IT SCHOOL SYSTEM
   servlet:
@@ -60,7 +62,7 @@ token:
 bot:
   username: uychi_it_school_bot
   token: 8055808761:AAFfsf18UmSYdEHIIJ1yZy5NLzDMuEGDI-w
-  webhook-path: https://cc89-213-230-87-9.ngrok-free.app/api/v1/webhook
+  webhook-path:  https://8822-37-110-210-55.ngrok-free.app/api/v1/webhook
   set-webhook-url: https://api.telegram.org/bot%s/setWebhook?url=%s
   url: https://t.me/uychi_it_school_bot
 

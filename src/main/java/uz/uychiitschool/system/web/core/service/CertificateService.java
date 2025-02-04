@@ -9,6 +9,7 @@ import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,15 +25,18 @@ import uz.uychiitschool.system.web.core.entity.Certificate;
 import uz.uychiitschool.system.web.core.entity.Course;
 import uz.uychiitschool.system.web.core.entity.Student;
 import uz.uychiitschool.system.web.core.repository.CertificateRepository;
+import uz.uychiitschool.system.web.core.repository.CourseRepository;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -45,6 +49,7 @@ public class CertificateService {
     private final StudentService studentService;
     private final QrCodeService qrCodeService;
     private final Environment environment;
+    private final CourseRepository courseRepository;
 
     public ResponseApi<Page<Certificate>> getAllCertificates(int page, int size) {
         Pageable pageable = PageRequest.of(page, size, Sort.sort(Certificate.class)
@@ -215,33 +220,21 @@ public class CertificateService {
     }
 
     public BufferedImage addTextToImage(Certificate certificate) throws IOException {
-        // Rasmdan BufferedImage yaratish
         Student student = certificate.getStudent();
-        String os = System.getProperty("os.name").toLowerCase();
-        String imagePath = "/home/javlon/IdeaProjects/system/data/images/c1.png";
 
-        if (os.contains("win")){
-            imagePath = "D:\\system\\data\\images\\c1.png";
-        }
-
-        BufferedImage image = ImageIO.read(new File(imagePath));
-
-        // Graphics2D yordamida yozuv qo'shish
-        String fontPath = "/home/javlon/IdeaProjects/system/data/fonts/Montserrat-Medium.ttf";
-        if (os.contains("win")) {
-            fontPath = "D:\\system\\data\\fonts\\Montserrat-Medium.ttf";
-            System.out.println("windows");
-        }
+        ClassPathResource imgFile = new ClassPathResource("images/c1.png");
+        InputStream inputStream = imgFile.getInputStream();
+        BufferedImage image = ImageIO.read(inputStream);
 
         Font customFont = new Font("Arial", Font.BOLD, 50);
         Font customFont2 = new Font("Arial", Font.BOLD, 50);
 
         try {
-            customFont = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new ClassPathResource("fonts/Montserrat-Medium.ttf").getInputStream());
             customFont = customFont.deriveFont(60f); // Font o'lchamini belgilash
 
-            customFont2 = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
-            customFont2 = customFont.deriveFont(30f); // Font o'lchamini belgilash
+            customFont2 = Font.createFont(Font.TRUETYPE_FONT, new ClassPathResource("fonts/Montserrat-Medium.ttf").getInputStream());
+            customFont2 = customFont2.deriveFont(30f); // Font o'lchamini belgilash
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -261,6 +254,139 @@ public class CertificateService {
         graphics2.drawString(String.format("%s", serialAndNumber), 1430, 1065);
 
         graphics.dispose();
+        return image;
+    }
+
+    public List<Certificate> saveCertificateFromList(List<Certificate> certificates) {
+        User teacher = userService.findUserByIdOrUsernameOrThrow(null, "rahmatillo");
+        Course course = courseRepository.findByName("Kompyuter savodxonligi").orElseThrow();
+        List<Certificate> certificateList = new ArrayList<>();
+        for (int i = 0; i < certificates.size(); i++) {
+            String uuid = UUID.randomUUID().toString();
+            String serial = uuid.substring(0, uuid.lastIndexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0,2).toUpperCase();
+
+            Certificate certificate = certificates.get(i);
+            certificate.setSerial(serial);
+            certificate.setNumber(String.valueOf(repository.count() + 10001));
+            certificate.setTeacher(teacher);
+            certificate.setCourse(course);
+            Certificate saved = repository.save(certificate);
+            certificateList.add(saved);
+        }
+        return certificateList;
+    }
+
+    // wekly
+
+    public byte [] createPdfFromImageByIdOrCertificateWeekly(UUID id, Certificate certificate)  {
+        try {
+            if (certificate == null){
+                certificate = findCertificateByIdOrThrow(id);
+            }
+
+            BufferedImage image = addTextToImageWeekly(certificate);
+            image = qrCodeService.addQrCodeToImage2(
+                    String.format(
+                            "%s?start=%s", environment.getProperty("bot.url"), certificate.getId()
+                    ),
+                    image
+            );
+
+            ByteArrayOutputStream imageOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", imageOutputStream);
+            byte[] imageBytes = imageOutputStream.toByteArray();
+
+            // PDF faylni yaratish uchun ByteArrayOutputStream
+            ByteArrayOutputStream pdfOutputStream = new ByteArrayOutputStream();
+            PdfWriter writer = new PdfWriter(pdfOutputStream);
+            PdfDocument pdfDoc = new PdfDocument(writer);
+
+            // PDF sahifa o'lchamini rasm o‘lchamiga mos qilish
+            pdfDoc.setDefaultPageSize(new PageSize(image.getWidth(), image.getHeight()));
+
+            // Hujjat yaratish
+            Document document = new Document(pdfDoc);
+
+            // Rasmni PDF sahifasiga qo'shish
+            ImageData imageData = ImageDataFactory.create(imageBytes);
+            Image pdfImage = new Image(imageData);
+            pdfImage.scaleToFit(image.getWidth(), image.getHeight()); // Rasmni moslashtirish
+            pdfImage.setFixedPosition(0, 0);
+            pdfImage.scaleAbsolute(image.getWidth(), image.getHeight());
+
+            // Rasmni hujjatga qo'shish
+            document.add(pdfImage);
+
+            // Hujjatni yopish
+            document.close();
+
+            // PDF faylni byte[] ko‘rinishida qaytarish
+            return pdfOutputStream.toByteArray();
+        }catch (Exception e){
+            throw new DataNotFoundException("Certificate not found or pdf not created");
+        }
+    }
+
+    public BufferedImage addTextToImageWeekly(Certificate certificate) throws IOException {
+        Student student = certificate.getStudent();
+
+        ClassPathResource imgFile = new ClassPathResource("images/malaka.jpg");
+        InputStream inputStream = imgFile.getInputStream();
+        BufferedImage image = ImageIO.read(inputStream);
+
+        Font customFont = new Font("Arial", Font.BOLD, 110);
+        Font customFont2 = new Font("Arial", Font.BOLD, 60);
+        Font customFont3 = new Font("Arial", Font.BOLD, 100);
+
+        try {
+            customFont = Font.createFont(Font.TRUETYPE_FONT, new ClassPathResource("fonts/Montserrat-Medium.ttf").getInputStream());
+            customFont = customFont.deriveFont(110f); // Font o'lchamini belgilash
+
+            customFont2 = Font.createFont(Font.TRUETYPE_FONT, new ClassPathResource("fonts/Montserrat-Medium.ttf").getInputStream());
+            customFont2 = customFont2.deriveFont(60f); // Font o'lchamini belgilash
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        Graphics2D graphics = image.createGraphics();
+        graphics.setFont(customFont);
+        graphics.setColor(Color.BLACK);
+
+        int imageWidth = image.getWidth();
+        FontMetrics fontMetrics = graphics.getFontMetrics(customFont);
+        String fullName = String.format("%s %s", student.getLastName().toUpperCase(), student.getFirstName().toUpperCase());
+        int textWidth = fontMetrics.stringWidth(fullName); // Matn kengligi
+
+        graphics.drawString(String.format("%s %s", student.getLastName().toUpperCase(), student.getFirstName().toUpperCase()), (imageWidth - textWidth) / 2, 1190); // X va Y koordinatalari
+
+        String end = certificate.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+        String start = certificate.getDate().minusDays(7).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+
+        String date = String.format("%s - %s", start, end);
+        FontMetrics fontMetrics2 = graphics.getFontMetrics(customFont2);
+        int textWidth2 = fontMetrics2.stringWidth(date); // Matn kengligi
+        String serialAndNumber = String.format("%s %s", certificate.getSerial(),certificate.getNumber());
+
+        Graphics2D graphics2 = image.createGraphics();
+        graphics2.setFont(customFont2);
+        graphics2.setColor(Color.BLACK);
+        graphics2.drawString(String.format("%s", date), (imageWidth - textWidth2) / 2, 1650);
+
+
+
+        Graphics2D graphics3 = image.createGraphics();
+        graphics3.setFont(customFont3);
+        graphics3.setStroke(new BasicStroke(3));
+        graphics3.setColor(Color.BLACK);
+        graphics3.drawLine(2000, 2127, 2400, 2127);
+
+        graphics2.drawString(String.format("%s", serialAndNumber), 2050, 2120);
+
+        graphics.dispose();
+        graphics2.dispose();
+        graphics3.dispose();
+
         return image;
     }
 }

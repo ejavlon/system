@@ -16,6 +16,7 @@ import uz.uychiitschool.system.web.core.entity.Student;
 import uz.uychiitschool.system.web.base.enums.Gender;
 import uz.uychiitschool.system.web.core.repository.StudentRepository;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -124,5 +125,9 @@ public class StudentService {
             existingStudent.setGender(Gender.fromString(studentDto.getGender()));
         }
         return existingStudent;
+    }
+
+    public void saveStudentFromList(List<Student> students) {
+        repository.saveAll(students);
     }
 }

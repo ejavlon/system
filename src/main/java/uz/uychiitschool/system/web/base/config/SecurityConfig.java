@@ -51,6 +51,7 @@ public class SecurityConfig {
 
     private String[] getPermitAllUrls() {
         return new String[]{
+                "/**",
                 "/api/v1/auth/**",
                 "/api/v1/**",
                 "/v2/api-docs",

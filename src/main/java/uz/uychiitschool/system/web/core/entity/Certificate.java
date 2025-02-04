@@ -18,7 +18,13 @@ import java.util.UUID;
     uniqueConstraints = {@UniqueConstraint(columnNames = {"course_id", "student_id"})})
 @FieldDefaults(level = AccessLevel.PRIVATE)
     public class Certificate {
-        @Id
+
+    public Certificate(LocalDateTime date, Student student) {
+        this.date = date;
+        this.student = student;
+    }
+
+    @Id
         @GeneratedValue(strategy = GenerationType.UUID)
         UUID id;
 
