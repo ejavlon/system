@@ -39,7 +39,12 @@ public class TelegramCertificateService {
     public void sendCertificate(UUID id, String chatId) {
         Certificate certificate = certificateService.findCertificateByIdOrThrow(id);
         Student student = certificate.getStudent();
-        byte[] bytes = certificateService.createPdfFromImageByIdOrCertificate(certificate.getId(), certificate);
+        byte[] bytes;
+        if (certificate.getWeekly()){
+            bytes = certificateService.createPdfFromImageByIdOrCertificateWeekly(certificate.getId(), certificate);
+        }else{
+            bytes = certificateService.createPdfFromImageByIdOrCertificate(certificate.getId(), certificate);
+        }
         InputFile inputFile = new InputFile(new ByteArrayInputStream(bytes), String.format("%s%s.pdf", certificate.getSerial(),certificate.getNumber()));
         itSchoolBot.sendDocument(chatId, String.format("%S %S", student.getLastName(), student.getFirstName()), inputFile);
     }
@@ -70,7 +75,7 @@ public class TelegramCertificateService {
             itSchoolBot.sendDocument(chatId, "Quyidagi shaklda namunani to'ldirib yuboring", inputFile);
 
         }catch (Exception e){
-            e.printStackTrace();
+            throw new RuntimeException("something went wrong", e);
         }
     }
 
@@ -108,20 +113,18 @@ public class TelegramCertificateService {
                         firstCell = false;
                     }else {
                         if (cell.getCellType() == CellType.NUMERIC){
-//                            LocalDate localDate = LocalDate.parse(cell.getDateCellValue(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                             Date date = cell.getDateCellValue();
                             LocalDateTime localDateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDay(), 0, 0, 0);
                             certificate.setStudent(student);
                             certificate.setDate(localDateTime);
-                            certificates.add(certificate);
                         }else if (cell.getCellType() == CellType.STRING){
                             LocalDate localDate = LocalDate.parse(cell.getStringCellValue(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                             LocalDateTime localDateTime = localDate.atStartOfDay();
                             certificate.setStudent(student);
                             certificate.setDate(localDateTime);
-                            certificates.add(certificate);
                         }
-
+                        certificate.setWeekly(isWeekly);
+                        certificates.add(certificate);
                     }
                 }
             }
@@ -129,7 +132,7 @@ public class TelegramCertificateService {
             List<Certificate> savedCertificates = certificateService.saveCertificateFromList(certificates);
             sendCertificateFromList(savedCertificates, message.getChatId().toString(), isWeekly);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Something went wrong when reading excel file", e);
         }
     }
 
@@ -140,9 +143,6 @@ public class TelegramCertificateService {
             Path filePath = Path.of("downloads/data.xlsx");
             Files.createDirectories(filePath.getParent());
             FileUtils.copyURLToFile(new URL(fileUrl), filePath.toFile());
-
-            System.out.println("Excel fayl yuklab olindi: " + filePath.toAbsolutePath());
-
         } catch (TelegramApiException | IOException e) {
             e.printStackTrace();
         }

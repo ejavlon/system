@@ -60,10 +60,14 @@ token:
     key: 0193ab713a2d72328b5a077b605696ae0193ab71d10973ae9c70bbb1206dd76a
 
 bot:
-  username: uychi_it_school_bot
-  token: 8055808761:AAFfsf18UmSYdEHIIJ1yZy5NLzDMuEGDI-w
-  webhook-path:  https://8822-37-110-210-55.ngrok-free.app/api/v1/webhook
+#  username: uychi_it_school_bot
+  username: my_service13_bot
+#  token: 8055808761:AAFfsf18UmSYdEHIIJ1yZy5NLzDMuEGDI-w
+  token: 5206538244:AAEaZD1yYev9fpgbTQm4AuW9f33Y6V4ZrRw
+#  webhook-path:  https://uychiit.e-javlon.uz/api/v1/webhook
+  webhook-path:  https://9940-37-110-210-54.ngrok-free.app/api/v1/webhook
   set-webhook-url: https://api.telegram.org/bot%s/setWebhook?url=%s
-  url: https://t.me/uychi_it_school_bot
+#  url: https://t.me/uychi_it_school_bot
+  url: https://t.me/my_service13_bot
 
 zonaid: Asia/Tashkent

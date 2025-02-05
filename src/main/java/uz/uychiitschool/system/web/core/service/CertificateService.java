@@ -66,7 +66,7 @@ public class CertificateService {
     }
 
     @Transactional
-    public ResponseApi<Certificate> create(CertificateDto certificateDto){
+    public ResponseApi<Certificate> create(CertificateDto certificateDto) {
         Certificate certificate = createOrUpdateCertificate(certificateDto, null);
         certificate = repository.save(certificate);
 
@@ -74,7 +74,7 @@ public class CertificateService {
                 certificate,
                 String.format(
                         "Certificate successfully created\nUrl: %s?start=%s",
-                        environment.getProperty("bot.url"),certificate.getId()
+                        environment.getProperty("bot.url"), certificate.getId()
                 ),
                 true);
     }
@@ -94,7 +94,7 @@ public class CertificateService {
     }
 
     @Transactional
-    public Certificate createCertificate(CertificateDto certificateDto){
+    public Certificate createCertificate(CertificateDto certificateDto) {
         if (certificateDto.getDate() != null && certificateDto.getDate().isAfter(LocalDateTime.now())) {
             throw new RuntimeException("Certificate date is after now");
         }
@@ -111,7 +111,7 @@ public class CertificateService {
 
         User teacher = userService.findUserByIdOrUsernameOrThrow(certificateDto.getTeacherId(), null);
         String uuid = UUID.randomUUID().toString();
-        String serial = uuid.substring(0, uuid.lastIndexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0,2).toUpperCase();
+        String serial = uuid.substring(0, uuid.lastIndexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0, 2).toUpperCase();
         return Certificate.builder()
                 .date(date)
                 .course(course)
@@ -119,12 +119,13 @@ public class CertificateService {
                 .student(student)
                 .serial(serial)
                 .number(String.valueOf(repository.count() + 10001))
+                .weekly(certificateDto.getWeekly() != null && certificateDto.getWeekly())
                 .build();
     }
 
     @Transactional
     public Certificate createOrUpdateCertificate(CertificateDto certificateDto, Certificate exsistingCertificate) {
-        if (exsistingCertificate == null){
+        if (exsistingCertificate == null) {
             return createCertificate(certificateDto);
         }
 
@@ -147,6 +148,10 @@ public class CertificateService {
             exsistingCertificate.setCourse(course);
         }
 
+        if (certificateDto.getWeekly() != null) {
+            exsistingCertificate.setWeekly(certificateDto.getWeekly());
+        }
+
         return exsistingCertificate;
     }
 
@@ -154,10 +159,14 @@ public class CertificateService {
         return repository.findById(id).orElseThrow(() -> new DataNotFoundException("Certificate not found"));
     }
 
-    public byte [] createPdfFromImageByIdOrCertificate(UUID id, Certificate certificate)  {
+    public byte[] createPdfFromImageByIdOrCertificate(UUID id, Certificate certificate) {
         try {
-            if (certificate == null){
+            if (certificate == null) {
                 certificate = findCertificateByIdOrThrow(id);
+            }
+
+            if (certificate.getWeekly()) {
+                return createPdfFromImageByIdOrCertificateWeekly(id, certificate);
             }
 
             BufferedImage image = addTextToImage(certificate);
@@ -214,7 +223,7 @@ public class CertificateService {
 
             // PDF ma'lumotini byte[] formatida olish
             return pdfOutputStream.toByteArray();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DataNotFoundException("Certificate not found or pdf not created");
         }
     }
@@ -235,18 +244,17 @@ public class CertificateService {
 
             customFont2 = Font.createFont(Font.TRUETYPE_FONT, new ClassPathResource("fonts/Montserrat-Medium.ttf").getInputStream());
             customFont2 = customFont2.deriveFont(30f); // Font o'lchamini belgilash
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         Graphics2D graphics = image.createGraphics();
-//        graphics.setFont(new Font("Arial", Font.BOLD, 50));
         graphics.setFont(customFont);
         graphics.setColor(Color.BLACK);
         graphics.drawString(String.format("%s %s", student.getLastName().toUpperCase(), student.getFirstName().toUpperCase()), 100, 750); // X va Y koordinatalari
 
         String date = certificate.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-        String serialAndNumber = String.format("%s %s", certificate.getSerial(),certificate.getNumber());
+        String serialAndNumber = String.format("%s %s", certificate.getSerial(), certificate.getNumber());
         Graphics2D graphics2 = image.createGraphics();
         graphics2.setFont(customFont2);
         graphics2.setColor(Color.BLACK);
@@ -263,7 +271,7 @@ public class CertificateService {
         List<Certificate> certificateList = new ArrayList<>();
         for (int i = 0; i < certificates.size(); i++) {
             String uuid = UUID.randomUUID().toString();
-            String serial = uuid.substring(0, uuid.lastIndexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0,2).toUpperCase();
+            String serial = uuid.substring(0, uuid.lastIndexOf("-")).replaceAll("[^a-zA-Z]", "").substring(0, 2).toUpperCase();
 
             Certificate certificate = certificates.get(i);
             certificate.setSerial(serial);
@@ -278,9 +286,9 @@ public class CertificateService {
 
     // wekly
 
-    public byte [] createPdfFromImageByIdOrCertificateWeekly(UUID id, Certificate certificate)  {
+    public byte[] createPdfFromImageByIdOrCertificateWeekly(UUID id, Certificate certificate) {
         try {
-            if (certificate == null){
+            if (certificate == null) {
                 certificate = findCertificateByIdOrThrow(id);
             }
 
@@ -322,7 +330,7 @@ public class CertificateService {
 
             // PDF faylni byte[] ko‘rinishida qaytarish
             return pdfOutputStream.toByteArray();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new DataNotFoundException("Certificate not found or pdf not created");
         }
     }
@@ -345,7 +353,7 @@ public class CertificateService {
             customFont2 = Font.createFont(Font.TRUETYPE_FONT, new ClassPathResource("fonts/Montserrat-Medium.ttf").getInputStream());
             customFont2 = customFont2.deriveFont(60f); // Font o'lchamini belgilash
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -366,13 +374,12 @@ public class CertificateService {
         String date = String.format("%s - %s", start, end);
         FontMetrics fontMetrics2 = graphics.getFontMetrics(customFont2);
         int textWidth2 = fontMetrics2.stringWidth(date); // Matn kengligi
-        String serialAndNumber = String.format("%s %s", certificate.getSerial(),certificate.getNumber());
+        String serialAndNumber = String.format("%s %s", certificate.getSerial(), certificate.getNumber());
 
         Graphics2D graphics2 = image.createGraphics();
         graphics2.setFont(customFont2);
         graphics2.setColor(Color.BLACK);
         graphics2.drawString(String.format("%s", date), (imageWidth - textWidth2) / 2, 1650);
-
 
 
         Graphics2D graphics3 = image.createGraphics();

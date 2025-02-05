@@ -21,6 +21,8 @@ public class CertificateDto {
 
     LocalDateTime date;
 
+    Boolean weekly;
+
     @NotNull(message = "course id is null")
     Integer courseId;
 

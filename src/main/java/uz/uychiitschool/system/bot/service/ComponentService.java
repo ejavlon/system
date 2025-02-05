@@ -20,11 +20,11 @@ public class ComponentService {
 
         InlineKeyboardButton button1 = new InlineKeyboardButton();
         button1.setCallbackData("generateCertificate");
-        button1.setText("Certificate savodxonlik ⚡\uFE0F");
+        button1.setText("Certificate savodxonlik \uD83D\uDE80");
 
         InlineKeyboardButton button2 = new InlineKeyboardButton();
         button2.setCallbackData("generateCertificateWeekly");
-        button2.setText("Certificate malaka oshirish ⚡\uFE0F");
+        button2.setText("Certificate malaka oshirish \uD83D\uDE80");
 
         row1.add(button1);
         row2.add(button2);
