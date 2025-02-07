@@ -12,6 +12,7 @@ import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import uz.uychiitschool.system.bot.ItSchoolBot;
+import uz.uychiitschool.system.web.base.exception.DataNotFoundException;
 import uz.uychiitschool.system.web.core.entity.Certificate;
 import uz.uychiitschool.system.web.core.entity.Student;
 import uz.uychiitschool.system.web.core.service.CertificateService;
@@ -21,13 +22,13 @@ import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.time.format.DateTimeParseException;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -37,44 +38,49 @@ public class TelegramCertificateService {
     private final StudentService studentService;
 
     public void sendCertificate(UUID id, String chatId) {
-        Certificate certificate = certificateService.findCertificateByIdOrThrow(id);
+        Certificate certificate;
+        try {
+            certificate = certificateService.findCertificateByIdOrThrow(id);
+        } catch (DataNotFoundException e) {
+            itSchoolBot.sendMessage(chatId, "Bunday sertificate mavjud emas!");
+            return;
+        }
         Student student = certificate.getStudent();
         byte[] bytes;
-        if (certificate.getWeekly()){
+        if (certificate.getWeekly()) {
             bytes = certificateService.createPdfFromImageByIdOrCertificateWeekly(certificate.getId(), certificate);
-        }else{
+        } else {
             bytes = certificateService.createPdfFromImageByIdOrCertificate(certificate.getId(), certificate);
         }
-        InputFile inputFile = new InputFile(new ByteArrayInputStream(bytes), String.format("%s%s.pdf", certificate.getSerial(),certificate.getNumber()));
+        InputFile inputFile = new InputFile(new ByteArrayInputStream(bytes), String.format("%s%s.pdf", certificate.getSerial(), certificate.getNumber()));
         itSchoolBot.sendDocument(chatId, String.format("%S %S", student.getLastName(), student.getFirstName()), inputFile);
     }
 
     public void sendCertificateFromList(List<Certificate> certificates, String chatId, boolean isWeekLy) {
-
         for (int i = 0; i < certificates.size(); i++) {
             final int k = i;
             new Thread(() -> {
                 Certificate certificate = certificates.get(k);
                 Student student = certificate.getStudent();
                 byte[] bytes;
-                if (isWeekLy){
+                if (isWeekLy) {
                     bytes = certificateService.createPdfFromImageByIdOrCertificateWeekly(certificate.getId(), certificate);
-                }else{
+                } else {
                     bytes = certificateService.createPdfFromImageByIdOrCertificate(certificate.getId(), certificate);
                 }
-                InputFile inputFile = new InputFile(new ByteArrayInputStream(bytes), String.format("%s%s.pdf", certificate.getSerial(),certificate.getNumber()));
+                InputFile inputFile = new InputFile(new ByteArrayInputStream(bytes), String.format("%s%s.pdf", certificate.getSerial(), certificate.getNumber()));
                 itSchoolBot.sendDocument(chatId, String.format("%S %S", student.getLastName(), student.getFirstName()), inputFile);
             }).start();
         }
     }
 
-    public void sendExcelFile(String chatId){
+    public void sendExcelFile(String chatId) {
         try {
             InputStream inputStream = new ClassPathResource("xls/EXAMPLE.xlsx").getInputStream();
             InputFile inputFile = new InputFile(inputStream, "example.xlsx");
             itSchoolBot.sendDocument(chatId, "Quyidagi shaklda namunani to'ldirib yuboring", inputFile);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException("something went wrong", e);
         }
     }
@@ -94,7 +100,7 @@ public class TelegramCertificateService {
             List<Certificate> certificates = new ArrayList<>();
 
             for (Row row : sheet) {
-                if (firstRow){
+                if (firstRow) {
                     firstRow = false;
                     continue;
                 }
@@ -104,24 +110,31 @@ public class TelegramCertificateService {
                 Certificate certificate = new Certificate();
 
                 for (Cell cell : row) {
-                    if (firstCell){
+                    if (firstCell) {
                         String fullName = cell.getStringCellValue();
+                        System.out.println("fullName = " + fullName);
                         String[] fullNameArr = fullName.split(" ", 2);
                         student.setFirstName(fullNameArr[1]);
                         student.setLastName(fullNameArr[0]);
                         students.add(student);
                         firstCell = false;
-                    }else {
-                        if (cell.getCellType() == CellType.NUMERIC){
+                    } else {
+                        if (cell.getCellType() == CellType.NUMERIC) {
                             Date date = cell.getDateCellValue();
-                            LocalDateTime localDateTime = LocalDateTime.of(date.getYear(), date.getMonth(), date.getDay(), 0, 0, 0);
+                            Instant instant = date.toInstant();
+                            LocalDateTime localDateTime = instant.atZone(ZoneId.of("Asia/Tashkent")).toLocalDateTime();
                             certificate.setStudent(student);
                             certificate.setDate(localDateTime);
-                        }else if (cell.getCellType() == CellType.STRING){
-                            LocalDate localDate = LocalDate.parse(cell.getStringCellValue(), DateTimeFormatter.ofPattern("dd.MM.yyyy"));
-                            LocalDateTime localDateTime = localDate.atStartOfDay();
-                            certificate.setStudent(student);
-                            certificate.setDate(localDateTime);
+                        } else if (cell.getCellType() == CellType.STRING) {
+                            try {
+                                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                                LocalDate localDate = LocalDate.parse(cell.getStringCellValue().trim(), formatter);
+                                LocalDateTime localDateTime = localDate.atStartOfDay();
+                                certificate.setStudent(student);
+                                certificate.setDate(localDateTime);
+                            } catch (DateTimeParseException e) {
+                                System.err.println("Xatolik: Noto‘g‘ri sana formati - " + cell.getStringCellValue());
+                            }
                         }
                         certificate.setWeekly(isWeekly);
                         certificates.add(certificate);

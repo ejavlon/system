@@ -24,7 +24,7 @@ public class CommandLineService {
     private final CourseRepository courseRepository;
 
     @Bean
-    public CommandLineRunner commandLineRunner(Environment environment){
+    public CommandLineRunner commandLineRunner(Environment environment) {
         String initMode = environment.getProperty("spring.sql.init.mode");
         return args -> {
             if ("always".equals(initMode) && !userRepository.existsByUsername("ejavlon")) {

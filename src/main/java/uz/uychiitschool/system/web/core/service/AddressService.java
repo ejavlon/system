@@ -96,7 +96,7 @@ public class AddressService {
             return createAddress(studentDto);
         }
         if (studentDto.getRegionName() == null && studentDto.getDistrictName() == null
-            && studentDto.getStreetName() == null && studentDto.getHouseNumber() == null) {
+                && studentDto.getStreetName() == null && studentDto.getHouseNumber() == null) {
             return null;
         }
         Address newAddress = createAddress(studentDto);

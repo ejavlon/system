@@ -100,7 +100,7 @@ public class GroupService {
         User teacher = userService.findUserByIdOrUsernameOrThrow(groupDto.getTeacherId(), null);
         Course course = courseService.findCourseByIdOrThrow(groupDto.getCourseId());
 
-        group = createOrUpdateGroup(groupDto,group);
+        group = createOrUpdateGroup(groupDto, group);
         group.setTeacher(teacher);
         group.setCourse(course);
         return ResponseApi.createResponse(repository.save(group), "group successfully updated", true);

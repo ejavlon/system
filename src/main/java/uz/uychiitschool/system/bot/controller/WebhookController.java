@@ -9,10 +9,9 @@ import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.*;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import uz.uychiitschool.system.bot.ItSchoolBot;
-import uz.uychiitschool.system.bot.service.ComponentService;
 import uz.uychiitschool.system.bot.service.TelegramCertificateService;
 
-import java.util.Objects;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class WebhookController {
     private final ItSchoolBot bot;
     private final TelegramCertificateService telegramCertificateService;
-    private final ComponentService componentService;
+    private final InlineKeyboardMarkup certificateTypeMarkup;
 
     private boolean isWeekly;
 
@@ -29,7 +28,8 @@ public class WebhookController {
     public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
         if (update.hasMessage()
                 && update.getMessage().hasDocument()
-                && "ejavlon".equals(update.getMessage().getFrom().getUserName())
+                && List.of("ejavlon", "ahrorbek_mamadaliyev", "iTmaktabUychi", "NazarovSherzod")
+                .contains(update.getMessage().getFrom().getUserName())
         ) {
             handleDocument(update);
         } else if (update.hasMessage()) {
@@ -57,12 +57,12 @@ public class WebhookController {
                 throw new RuntimeException("Doesn't match UUID");
             }
             telegramCertificateService.sendCertificate(uuidFromString, message.getChatId().toString());
-        } else if ("/start".equals(message.getText()) && Objects.equals("ejavlon", from.getUserName())) {
-            InlineKeyboardMarkup inlineKeyboardMarkup = componentService.generateCertificateMarkup();
+        } else if ("/start".equals(message.getText()) && List.of("ejavlon", "ahrorbek_mamadaliyev", "iTmaktabUychi", "NazarovSherzod")
+                .contains(from.getUserName())) {
             bot.sendMessage(
                     message.getChatId().toString(),
                     "Iltimos kerakli certificate turidan birini tanlang!",
-                    inlineKeyboardMarkup
+                    certificateTypeMarkup
             );
             isWeekly = false;
         }

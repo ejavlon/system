@@ -1,9 +1,9 @@
 server:
   port: 8080
-  servlet:
-    session:
-      cookie:
-        secure: false
+#  servlet:
+#    session:
+#      cookie:
+#        secure: false
 
 spring:
   cache:
@@ -16,22 +16,22 @@ spring:
       max-request-size: 100MB
       max-file-size: 100MB
   datasource:
-#    url: jdbc:h2:file:./data/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    #    url: jdbc:h2:file:./data/testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
     url: jdbc:postgresql://localhost:5432/uychi-itschool
     username: javlon
     password: 123
     driver-class-name: org.postgresql.Driver
-#    driver-class-name: org.h2.Driver
+  #    driver-class-name: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     open-in-view: false
-#    database-platform: org.hibernate.dialect.H2Dialect
-#  h2:
-#    console:
-#      enabled: true
-#      path: /h2-console
+  #    database-platform: org.hibernate.dialect.H2Dialect
+  #  h2:
+  #    console:
+  #      enabled: true
+  #      path: /h2-console
   sql:
     init:
       mode: always
@@ -60,14 +60,14 @@ token:
     key: 0193ab713a2d72328b5a077b605696ae0193ab71d10973ae9c70bbb1206dd76a
 
 bot:
-#  username: uychi_it_school_bot
-  username: my_service13_bot
-#  token: 8055808761:AAFfsf18UmSYdEHIIJ1yZy5NLzDMuEGDI-w
-  token: 5206538244:AAEaZD1yYev9fpgbTQm4AuW9f33Y6V4ZrRw
-#  webhook-path:  https://uychiit.e-javlon.uz/api/v1/webhook
-  webhook-path:  https://9940-37-110-210-54.ngrok-free.app/api/v1/webhook
+  username: uychi_it_school_bot
+  #  username: my_service13_bot
+  token: 8055808761:AAFfsf18UmSYdEHIIJ1yZy5NLzDMuEGDI-w
+  #  token: 5206538244:AAEaZD1yYev9fpgbTQm4AuW9f33Y6V4ZrRw
+  webhook-path:  https://uychiit.e-javlon.uz/api/v1/webhook
+#  webhook-path: https://cde7-213-230-86-82.ngrok-free.app/api/v1/webhook
   set-webhook-url: https://api.telegram.org/bot%s/setWebhook?url=%s
-#  url: https://t.me/uychi_it_school_bot
-  url: https://t.me/my_service13_bot
+  url: https://t.me/uychi_it_school_bot
+#  url: https://t.me/my_service13_bot
 
 zonaid: Asia/Tashkent
